@@ -76,5 +76,5 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.cm.hardware.cabc=/sys/class/mdnie/mdnie/cabc
 
 $(call inherit-product, frameworks/native/build/tablet-10in-xhdpi-2048-dalvik-heap.mk)
+
 $(call inherit-product, vendor/samsung/kona-common/kona-vendor.mk)
-$(call inherit-product, device/samsung/smdk4412-common/common.mk)

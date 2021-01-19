@@ -41,4 +41,4 @@ BOARD_EXYNOS4X12_TABLET_HAS_LED_BUTTONS := true
 NO_CHARGER_LED := true
 
 # Selinux
-BOARD_SEPOLICY_DIRS += device/samsung/kona-common/selinux
+# BOARD_SEPOLICY_DIRS += device/samsung/kona-common/selinux
