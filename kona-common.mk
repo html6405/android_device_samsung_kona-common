@@ -67,7 +67,9 @@ PRODUCT_PACKAGES += \
 
 # IR packages
 PRODUCT_PACKAGES += \
-    consumerir.exynos4
+    consumerir.exynos4 \
+    android.hardware.ir@1.0-impl \
+    android.hardware.ir@1.0-service
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.consumerir.xml:system/etc/permissions/android.hardware.consumerir.xml
