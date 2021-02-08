@@ -1,6 +1,0 @@
-allow untrusted_app domain:dir { getattr search };
-allow untrusted_app domain:file { read open };
-allow untrusted_app storage_stub_file:dir getattr;
-# S-Pen detection
-allow untrusted_app input_device:dir { search write open read };
-allow untrusted_app input_device:chr_file { getattr write ioctl read open };

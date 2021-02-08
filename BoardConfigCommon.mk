@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2016 The CyanogenMod Project
+# Copyright (C) 2012 The CyanogenMod Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,34 +13,38 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
 include device/samsung/smdk4412-common/BoardCommonConfig.mk
 
-LOCAL_PATH := device/samsung/kona-common
+WITHOUT_CAMERA2 := true
+WITHOUT_GCAM := true
 
-# For KK blobs
+# Wifi
+WIFI_DRIVER_MODULE_PATH :=
+
+# Bionic
 MALLOC_SVELTE := true
 TARGET_NEEDS_PLATFORM_TEXT_RELOCATIONS := true
-
-# Recovery
-TARGET_RECOVERY_DENSITY := mdpi
-
-# Bluetooth
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
-
-# Camera
-BOARD_GLOBAL_CFLAGS += -DCAMERA_WITH_CITYID_PARAM
+LIBART_IMG_BASE := 0x30000000
 
 # Graphics
 TARGET_REQUIRES_SYNCHRONOUS_SETSURFACE := true
+BOARD_EGL_WORKAROUND_BUG_10194508 := true
+BOARD_GLOBAL_CFLAGS += -DWORKAROUND_BUG_10194508
 BOARD_EGL_NEEDS_HANDLE_VALUE := true
+TARGET_ENABLE_MEDIADRM_64 := true
 SF_PRIMARY_DISPLAY_ORIENTATION := 270
 
 # Lights
 BOARD_EXYNOS4X12_TABLET_HAS_LED_BUTTONS := true
 
-# Charger
-NO_CHARGER_LED := true
+# Bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/kona-common/bluetooth
+
+# Kernel
+TARGET_KERNEL_SOURCE := kernel/samsung/smdk4412
+TARGET_KERNEL_CONFIG := lineageos_n5110_defconfig
+
+TARGET_SPECIFIC_HEADER_PATH += device/samsung/kona-common/include
 
 # Filesystem
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 1444888576
@@ -50,8 +54,11 @@ BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_FLASH_BLOCK_SIZE := 2048
 TARGET_RECOVERY_DEVICE_DIRS += device/samsung/kona-common
 
-# Selinux
-# BOARD_SEPOLICY_DIRS += device/samsung/kona-common/selinux
+# Recovery
+TARGET_RECOVERY_FSTAB := device/samsung/kona-common/rootdir/fstab.n51xx
+TARGET_RECOVERY_DENSITY := mdpi
+TARGET_USERIMAGES_USE_F2FS := true
+RECOVERY_FSTAB_VERSION := 2
 
 # PowerHAL
 TARGET_POWERHAL_VARIANT := pegasusq

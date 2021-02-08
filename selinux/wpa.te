@@ -1,1 +1,0 @@
-allow wpa radio_device:chr_file { read open };
