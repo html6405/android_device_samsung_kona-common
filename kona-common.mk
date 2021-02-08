@@ -36,11 +36,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/audio_policy.conf:system/etc/audio_policy.conf
 
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/tiny_hw.xml:system/etc/sound/n51xx
-
-
-# prebuild apps
+PRODUCT_PACKAGES += \
+    tiny_hw
 
 PRODUCT_PACKAGES += \
 	MagiskManager \
