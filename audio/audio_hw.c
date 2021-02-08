@@ -2940,7 +2940,7 @@ static int adev_config_parse(struct m0_audio_device *adev)
     bool eof = false;
     int len;
 
-    snprintf(file, sizeof(file), "/system/etc/sound/%s", "n51xx");
+    snprintf(file, sizeof(file), "/system/etc/sound/%s", "tiny_hw.xml");
     
     ALOGV("Reading configuration from %s\n", file);
     f = fopen(file, "r");
