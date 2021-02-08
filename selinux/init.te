@@ -1,8 +1,0 @@
-allow init debugfs:dir mounton;
-allow init sysfs:lnk_file setattr;
-allow init tmpfs:lnk_file create;
-allow init vfat:dir mounton;
-allow init block_device:lnk_file setattr;
-
-# load SHIM libraries
-allow init rild:process noatsecure;

@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2016 The CyanogenMod Project
+# Copyright (C) 2012 The CyanogenMod Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,57 +15,73 @@
 #
 
 LOCAL_PATH := device/samsung/kona-common
+COMMON_PATH := device/samsung/smdk4412-common
 
-PRODUCT_CHARACTERISTICS := tablet
-
+# Overlay
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
+# Screen density
 PRODUCT_AAPT_CONFIG := hdpi
 PRODUCT_AAPT_PREF_CONFIG := xhdpi
-
-TARGET_SCREEN_HEIGHT := 800
-TARGET_SCREEN_WIDTH := 1280
 
 TARGET_HAS_CAM_FLASH := false
 
 # Init files
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/rootdir/fstab.smdk4x12:root/fstab.smdk4x12 \
-    $(LOCAL_PATH)/rootdir/init.target.rc:root/init.target.rc \
+	$(LOCAL_PATH)/rootdir/fstab.n51xx:root/fstab.smdk4x12 \
+    $(LOCAL_PATH)/rootdir/ueventd.smdk4x12.rc:root/ueventd.smdk4x12.rc \
     $(LOCAL_PATH)/rootdir/ueventd.smdk4x12.rc:recovery/root/ueventd.smdk4x12.rc \
-    $(LOCAL_PATH)/rootdir/ueventd.smdk4x12.rc:root/ueventd.smdk4x12.rc
 
-# Stock MM blobs
-PRODUCT_PACKAGES += \
-    libxml2 \
-    libprotobuf-cpp-full
-
-# Packages
-PRODUCT_PACKAGES += \
-    libsamsung_symbols \
-    tiny_hw \
-    tinyplay \
-    SamsungServiceMode \
-    Stk
-
-# Codecs
+# Audio
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml
+    $(LOCAL_PATH)/configs/audio_policy.conf:system/etc/audio_policy.conf
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/tiny_hw.xml:system/etc/sound/n51xx
+
+
+# prebuild apps
+
+PRODUCT_PACKAGES += \
+	MagiskManager \
+	OpenCamera \
+	Via
+
+# Sensors
+PRODUCT_PACKAGES += \
+    sensors.smdk4x12 \
+    lightsensor.smdk4x12
+
+# Power
+PRODUCT_PACKAGES += \
+    power.smdk4x12
+
+ifneq ($(TARGET_PRODUCT),lineage_n5120)
+# Gps
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/gps.xml:system/vendor/etc/gps.xml
+
+PRODUCT_PACKAGES += \
+	gps.smdk4x12
+endif
+
+
+# Product specific Packages
+PRODUCT_PACKAGES += \
+    libsecril-client \
+    libsecril-client-sap \
+    SamsungServiceMode \
+    tinyplay
+
+# RIL
+PRODUCT_PACKAGES += \
+	libsecril-shim
 
 # Camera
 PRODUCT_PACKAGES += \
     camera.smdk4x12
 
-# RIL
-PRODUCT_PACKAGES += \
-    libsecril-client \
-    libsecril-client-sap
-
-# Sensors
-PRODUCT_PACKAGES += \
-    sensors.smdk4x12
-
-# IR packages
+# ConsumerIR
 PRODUCT_PACKAGES += \
     consumerir.exynos4 \
     android.hardware.ir@1.0-impl \
@@ -74,9 +90,39 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.consumerir.xml:system/etc/permissions/android.hardware.consumerir.xml
 
+# f2fs
+PRODUCT_PACKAGES += \
+	fibmap.f2fs \
+	fsck.f2fs \
+	mkfs.f2fs
+
+# RIL
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.cm.hardware.cabc=/sys/class/mdnie/mdnie/cabc
+    ro.telephony.ril_class=SamsungExynos4RIL \
+    ro.telephony.call_ring.multiple=false \
+    ro.telephony.call_ring.delay=3000
+
+# These are the hardware-specific features
+PRODUCT_COPY_FILES += \
+	frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
+    frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
+    frameworks/native/data/etc/tablet_core_hardware.xml:system/etc/permissions/tablet_core_hardware.xml
+
+# Reduce dalvik heap size
+#PRODUCT_PROPERTY_OVERRIDES += \
+#    dalvik.vm.heapsize=256m \
+
+# UMS
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/ums_init.sh:system/bin/ums_init.sh
+
+# Set product characteristic to tablet, needed for some ui elements
+PRODUCT_CHARACTERISTICS := tablet
+
+# Vendor security patch level
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.lineage.build.vendor_security_patch=2015-11-05
 
 $(call inherit-product, frameworks/native/build/tablet-10in-xhdpi-2048-dalvik-heap.mk)
 
-$(call inherit-product, vendor/samsung/kona-common/kona-vendor.mk)
+$(call inherit-product-if-exists, vendor/samsung/n80xx/n80xx-vendor.mk)

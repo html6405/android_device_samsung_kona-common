@@ -1,12 +1,10 @@
-#!/bin/bash
-#
 # Copyright (C) 2016 The CyanogenMod Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-# http://www.apache.org/licenses/LICENSE-2.0
+#      http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -14,9 +12,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-set -e
+LOCAL_PATH := $(call my-dir)
 
-export VENDOR=samsung
-export DEVICE=n51xx
+include $(CLEAR_VARS)
 
-./../smdk4412-common/extract-files.sh $@
+LOCAL_SRC_FILES := gps.c
+
+LOCAL_SHARED_LIBRARIES := \
+	libcutils \
+	liblog
+
+LOCAL_MODULE := gps.$(TARGET_BOOTLOADER_BOARD_NAME)
+LOCAL_MODULE_RELATIVE_PATH := hw
+LOCAL_VENDOR_MODULE := true
+
+include $(BUILD_SHARED_LIBRARY)
+

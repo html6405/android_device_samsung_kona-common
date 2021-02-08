@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2016 The Android Open Source Project
- * Copyright (C) 2016 The CyanogenMod Project <http://www.cyanogenmod.org>
+ * Copyright (C) 2012 The Android Open Source Project
+ * Copyright (C) 2012 The CyanogenMod Project <http://www.cyanogenmod.org>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,15 @@
 #ifndef _BDROID_BUILDCFG_H
 #define _BDROID_BUILDCFG_H
 
-#define BTM_DEF_LOCAL_NAME "Samsung Galaxy Note 8.0"
+#if N5100
+#define BTM_DEF_LOCAL_NAME   "GT-N5100"
+#endif
+#if N5110
+#define BTM_DEF_LOCAL_NAME   "GT-N5110"
+#endif
+#if N5120
+#define BTM_DEF_LOCAL_NAME   "GT-N5120"
+#endif
 
 /* Defined if the kernel does not have support for CLOCK_BOOTTIME_ALARM */
 #define KERNEL_MISSING_CLOCK_BOOTTIME_ALARM TRUE

@@ -1,8 +1,0 @@
-allow domain kernel:system module_request;
-allow domain log_device:chr_file { write read open };
-allow domain log_device:dir search;
-
-type efs_device_file, dev_type;
-
-# load SHIM libraries
-allow init { domain -lmkd }:process noatsecure;
