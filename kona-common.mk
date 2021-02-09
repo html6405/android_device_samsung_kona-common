@@ -103,8 +103,8 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/tablet_core_hardware.xml:system/etc/permissions/tablet_core_hardware.xml
 
 # Reduce dalvik heap size
-#PRODUCT_PROPERTY_OVERRIDES += \
-#    dalvik.vm.heapsize=256m \
+PRODUCT_PROPERTY_OVERRIDES += \
+    dalvik.vm.heapsize=256m \
 
 # UMS
 PRODUCT_COPY_FILES += \
