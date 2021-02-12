@@ -58,6 +58,11 @@
 #define EVENT_TYPE_MAGV_Y           ABS_Y
 #define EVENT_TYPE_MAGV_Z           ABS_Z
 
+/* For lis3dh */
+#define EVENT_TYPE_ACCEL_X          ABS_X
+#define EVENT_TYPE_ACCEL_Y          ABS_Y
+#define EVENT_TYPE_ACCEL_Z          ABS_Z
+
 struct smdk4x12_sensors_device;
 
 struct smdk4x12_sensors_handlers {

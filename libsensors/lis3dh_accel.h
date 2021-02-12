@@ -13,13 +13,13 @@
  *
  */
 
-#ifndef __LSM330DLC_ACCEL_HEADER__
-#define __LSM330DLC_ACCEL_HEADER__
+#ifndef __LIS3DH_ACCEL_HEADER__
+#define __LIS3DH_ACCEL_HEADER__
 
 #include <linux/types.h>
 #include <linux/ioctl.h>
 
-/*lsm330dlc_accel registers */
+/*LIS3DH_accel registers */
 #define STATUS_AUX		0x07
 #define OUT_1_L			0x08
 #define OUT_1_H			0x09
@@ -163,7 +163,7 @@
 /* dev info */
 #define ACC_DEV_NAME "accelerometer"
 
-struct lsm330dlc_acc {
+struct lis3dh_acc {
 	__s16 x;
 	__s16 y;
 	__s16 z;
@@ -172,14 +172,14 @@ struct lsm330dlc_acc {
 /* For movement recognition*/
 #define USES_MOVEMENT_RECOGNITION
 
-/* LSM330DLC_ACCEL ioctl command label */
-#define LSM330DLC_ACCEL_IOCTL_BASE 'a'
-#define LSM330DLC_ACCEL_IOCTL_SET_DELAY   \
-	_IOW(LSM330DLC_ACCEL_IOCTL_BASE, 0, int64_t)
-#define LSM330DLC_ACCEL_IOCTL_GET_DELAY  \
-	_IOR(LSM330DLC_ACCEL_IOCTL_BASE, 1, int64_t)
-#define LSM330DLC_ACCEL_IOCTL_READ_XYZ\
-	_IOR(LSM330DLC_ACCEL_IOCTL_BASE, 8, struct lsm330dlc_acc)
-#define LSM330DLC_ACCEL_IOCTL_SET_ENABLE   \
-	_IOW(LSM330DLC_ACCEL_IOCTL_BASE, 9, int)
+/* LIS3DH_ACCEL ioctl command label */
+#define LIS3DH_ACCEL_IOCTL_BASE 'a'
+#define LIS3DH_ACCEL_IOCTL_SET_DELAY   \
+	_IOW(LIS3DH_ACCEL_IOCTL_BASE, 0, int64_t)
+#define LIS3DH_ACCEL_IOCTL_GET_DELAY  \
+	_IOR(LIS3DH_ACCEL_IOCTL_BASE, 1, int64_t)
+#define LIS3DH_ACCEL_IOCTL_READ_XYZ\
+	_IOR(LIS3DH_ACCEL_IOCTL_BASE, 8, struct lis3dh_acc)
+#define LIS3DH_ACCEL_IOCTL_SET_ENABLE   \
+	_IOW(LIS3DH_ACCEL_IOCTL_BASE, 9, int)
 #endif
