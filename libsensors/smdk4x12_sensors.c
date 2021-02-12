@@ -61,7 +61,7 @@ struct sensor_t smdk4x12_sensors[] = {
 int smdk4x12_sensors_count = sizeof(smdk4x12_sensors) / sizeof(struct sensor_t);
 
 struct smdk4x12_sensors_handlers *smdk4x12_sensors_handlers[] = {
-	&lsm330dlc_acceleration,
+	&lis3dh_acceleration,
 	&al3201_light,
 	&cm36651_proximity,
 	&yas532_magnetic,

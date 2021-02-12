@@ -30,7 +30,7 @@
 #include "smdk4x12_sensors.h"
 #include "lsm330dlc_accel.h"
 
-struct lsm330dlc_acceleration_data {
+struct lis3dh_acceleration_data {
 	int64_t delay;
 	int device_fd;
 
@@ -39,10 +39,10 @@ struct lsm330dlc_acceleration_data {
 	int thread_continue;
 };
 
-int lsm330dlc_acceleration_init(struct smdk4x12_sensors_handlers *handlers,
+int lis3dh_acceleration_init(struct smdk4x12_sensors_handlers *handlers,
 	struct smdk4x12_sensors_device *device)
 {
-	struct lsm330dlc_acceleration_data *data = NULL;
+	struct lis3dh_acceleration_data *data = NULL;
 	pthread_attr_t thread_attr;
 	int device_fd = -1;
 	int uinput_fd = -1;
@@ -55,7 +55,7 @@ int lsm330dlc_acceleration_init(struct smdk4x12_sensors_handlers *handlers,
 	if (handlers == NULL || device == NULL)
 		return -EINVAL;
 
-	data = (struct lsm330dlc_acceleration_data *) calloc(1, sizeof(struct lsm330dlc_acceleration_data));
+	data = (struct lis3dh_acceleration_data *) calloc(1, sizeof(struct lis3dh_acceleration_data));
 
 	device_fd = open("/dev/accelerometer", O_RDONLY);
 	if (device_fd < 0) {
@@ -99,16 +99,16 @@ error:
 	return -1;
 }
 
-int lsm330dlc_acceleration_deinit(struct smdk4x12_sensors_handlers *handlers)
+int lis3dh_acceleration_deinit(struct smdk4x12_sensors_handlers *handlers)
 {
-	struct lsm330dlc_acceleration_data *data = NULL;
+	struct lis3dh_acceleration_data *data = NULL;
 
 	ALOGD("%s(%p)", __func__, handlers);
 
 	if (handlers == NULL || handlers->data == NULL)
 		return -EINVAL;
 
-	data = (struct lsm330dlc_acceleration_data *) handlers->data;
+	data = (struct lis3dh_acceleration_data *) handlers->data;
 
 	handlers->activated = 0;
 	data->thread_continue = 0;
@@ -130,9 +130,9 @@ int lsm330dlc_acceleration_deinit(struct smdk4x12_sensors_handlers *handlers)
 	return 0;
 }
 
-int lsm330dlc_acceleration_activate(struct smdk4x12_sensors_handlers *handlers)
+int lis3dh_acceleration_activate(struct smdk4x12_sensors_handlers *handlers)
 {
-	struct lsm330dlc_acceleration_data *data;
+	struct lis3dh_acceleration_data *data;
 	int device_fd;
 	int enable;
 	int rc;
@@ -142,7 +142,7 @@ int lsm330dlc_acceleration_activate(struct smdk4x12_sensors_handlers *handlers)
 	if (handlers == NULL || handlers->data == NULL)
 		return -EINVAL;
 
-	data = (struct lsm330dlc_acceleration_data *) handlers->data;
+	data = (struct lis3dh_acceleration_data *) handlers->data;
 
 	device_fd = data->device_fd;
 	if (device_fd < 0)
@@ -161,9 +161,9 @@ int lsm330dlc_acceleration_activate(struct smdk4x12_sensors_handlers *handlers)
 	return 0;
 }
 
-int lsm330dlc_acceleration_deactivate(struct smdk4x12_sensors_handlers *handlers)
+int lis3dh_acceleration_deactivate(struct smdk4x12_sensors_handlers *handlers)
 {
-	struct lsm330dlc_acceleration_data *data;
+	struct lis3dh_acceleration_data *data;
 	int device_fd;
 	int enable;
 	int rc;
@@ -173,7 +173,7 @@ int lsm330dlc_acceleration_deactivate(struct smdk4x12_sensors_handlers *handlers
 	if (handlers == NULL || handlers->data == NULL)
 		return -EINVAL;
 
-	data = (struct lsm330dlc_acceleration_data *) handlers->data;
+	data = (struct lis3dh_acceleration_data *) handlers->data;
 
 	device_fd = data->device_fd;
 	if (device_fd < 0)
@@ -191,9 +191,9 @@ int lsm330dlc_acceleration_deactivate(struct smdk4x12_sensors_handlers *handlers
 	return 0;
 }
 
-int lsm330dlc_acceleration_set_delay(struct smdk4x12_sensors_handlers *handlers, int64_t delay)
+int lis3dh_acceleration_set_delay(struct smdk4x12_sensors_handlers *handlers, int64_t delay)
 {
-	struct lsm330dlc_acceleration_data *data;
+	struct lis3dh_acceleration_data *data;
 	int64_t d;
 	int device_fd;
 	int rc;
@@ -203,7 +203,7 @@ int lsm330dlc_acceleration_set_delay(struct smdk4x12_sensors_handlers *handlers,
 	if (handlers == NULL || handlers->data == NULL)
 		return -EINVAL;
 
-	data = (struct lsm330dlc_acceleration_data *) handlers->data;
+	data = (struct lis3dh_acceleration_data *) handlers->data;
 
 	device_fd = data->device_fd;
 	if (device_fd < 0)
@@ -221,17 +221,17 @@ int lsm330dlc_acceleration_set_delay(struct smdk4x12_sensors_handlers *handlers,
 	return 0;
 }
 
-float lsm330dlc_acceleration_convert(int value)
+float lis3dh_acceleration_convert(int value)
 {
 	return (float) (value) * (GRAVITY_EARTH / 1024.0f);
 }
 
 extern int mFlushed;
 
-int lsm330dlc_acceleration_get_data(struct smdk4x12_sensors_handlers *handlers,
+int lis3dh_acceleration_get_data(struct smdk4x12_sensors_handlers *handlers,
 	struct sensors_event_t *event)
 {
-	struct lsm330dlc_acceleration_data *data;
+	struct lis3dh_acceleration_data *data;
 	struct input_event input_event;
 	int input_fd;
 	int rc;
@@ -254,7 +254,7 @@ int lsm330dlc_acceleration_get_data(struct smdk4x12_sensors_handlers *handlers,
 		ALOGD("AkmSensor: %s Flushed sensorId: %d", __func__, sensorId);
 	}
 
-	data = (struct lsm330dlc_acceleration_data *) handlers->data;
+	data = (struct lis3dh_acceleration_data *) handlers->data;
 
 	input_fd = handlers->poll_fd;
 	if (input_fd < 0)
@@ -275,13 +275,13 @@ int lsm330dlc_acceleration_get_data(struct smdk4x12_sensors_handlers *handlers,
 		if (input_event.type == EV_REL) {
 			switch (input_event.code) {
 				case REL_X:
-					event->acceleration.x = lsm330dlc_acceleration_convert(input_event.value);
+					event->acceleration.x = lis3dh_acceleration_convert(input_event.value);
 					break;
 				case REL_Y:
-					event->acceleration.y = lsm330dlc_acceleration_convert(input_event.value);
+					event->acceleration.y = lis3dh_acceleration_convert(input_event.value);
 					break;
 				case REL_Z:
-					event->acceleration.z = lsm330dlc_acceleration_convert(input_event.value);
+					event->acceleration.z = lis3dh_acceleration_convert(input_event.value);
 					break;
 				default:
 					continue;
@@ -295,15 +295,15 @@ int lsm330dlc_acceleration_get_data(struct smdk4x12_sensors_handlers *handlers,
 	return 0;
 }
 
-struct smdk4x12_sensors_handlers lsm330dlc_acceleration = {
+struct smdk4x12_sensors_handlers lis3dh_acceleration = {
 	.name = "LSM330DLC Acceleration",
 	.handle = SENSOR_TYPE_ACCELEROMETER,
-	.init = lsm330dlc_acceleration_init,
-	.deinit = lsm330dlc_acceleration_deinit,
-	.activate = lsm330dlc_acceleration_activate,
-	.deactivate = lsm330dlc_acceleration_deactivate,
-	.set_delay = lsm330dlc_acceleration_set_delay,
-	.get_data = lsm330dlc_acceleration_get_data,
+	.init = lis3dh_acceleration_init,
+	.deinit = lis3dh_acceleration_deinit,
+	.activate = lis3dh_acceleration_activate,
+	.deactivate = lis3dh_acceleration_deactivate,
+	.set_delay = lis3dh_acceleration_set_delay,
+	.get_data = lis3dh_acceleration_get_data,
 	.activated = 0,
 	.needed = 0,
 	.poll_fd = -1,
