@@ -149,9 +149,9 @@ int lis3dh_acceleration_activate(struct smdk4x12_sensors_handlers *handlers)
 		return -1;
 
 	enable = 1;
-	rc = ioctl(device_fd, LSM330DLC_ACCEL_IOCTL_SET_ENABLE, &enable);
+	rc = ioctl(device_fd, LIS3DH_ACCEL_IOCTL_SET_ENABLE, &enable);
 	if (rc < 0) {
-		ALOGE("%s: Unable to set lsm330dlc acceleration enable", __func__);
+		ALOGE("%s: Unable to set lis3dh acceleration enable", __func__);
 		return -1;
 	}
 	
@@ -180,9 +180,10 @@ int lis3dh_acceleration_deactivate(struct smdk4x12_sensors_handlers *handlers)
 		return -1;
 
 	enable = 0;
-	rc = ioctl(device_fd, LSM330DLC_ACCEL_IOCTL_SET_ENABLE, &enable);
+	rc = ioctl(device_fd, LIS3DH_ACCEL_IOCTL_SET_ENABLE, &enable);
 	if (rc < 0) {
-		ALOGE("%s: Unable to set lsm330dlc acceleration enable", __func__);
+		ALOGE("%s: Unable to set lis3dh acceleration enable", __func__);
+		ALOGE("%s: Unable to set lis3dh acceleration enable", __func__);
 		return -1;
 	}
 
@@ -210,9 +211,9 @@ int lis3dh_acceleration_set_delay(struct smdk4x12_sensors_handlers *handlers, in
 		return -1;
 
 	d = (int64_t) delay;
-	rc = ioctl(device_fd, LSM330DLC_ACCEL_IOCTL_SET_DELAY, &d);
+	rc = ioctl(device_fd, LIS3DH_ACCEL_IOCTL_SET_DELAY, &d);
 	if (rc < 0) {
-		ALOGE("%s: Unable to set lsm330dlc acceleration delay", __func__);
+		ALOGE("%s: Unable to set lis3dh acceleration delay", __func__);
 		return -1;
 	}
 
@@ -223,7 +224,7 @@ int lis3dh_acceleration_set_delay(struct smdk4x12_sensors_handlers *handlers, in
 
 float lis3dh_acceleration_convert(int value)
 {
-	return (float) (value) * (GRAVITY_EARTH / 1024.0f);
+	return (float) (value) * RESOLUTION_A;
 }
 
 extern int mFlushed;
@@ -272,15 +273,15 @@ int lis3dh_acceleration_get_data(struct smdk4x12_sensors_handlers *handlers,
 		if (rc < (int) sizeof(input_event))
 			break;
 
-		if (input_event.type == EV_REL) {
+		if (input_event.type == EV_ABS) {
 			switch (input_event.code) {
-				case REL_X:
+				case EVENT_TYPE_ACCEL_X:
 					event->acceleration.x = lis3dh_acceleration_convert(input_event.value);
 					break;
-				case REL_Y:
+				case EVENT_TYPE_ACCEL_Y:
 					event->acceleration.y = lis3dh_acceleration_convert(input_event.value);
 					break;
-				case REL_Z:
+				case EVENT_TYPE_ACCEL_Z:
 					event->acceleration.z = lis3dh_acceleration_convert(input_event.value);
 					break;
 				default:
@@ -296,7 +297,7 @@ int lis3dh_acceleration_get_data(struct smdk4x12_sensors_handlers *handlers,
 }
 
 struct smdk4x12_sensors_handlers lis3dh_acceleration = {
-	.name = "LSM330DLC Acceleration",
+	.name = "LIS3DH Acceleration",
 	.handle = SENSOR_TYPE_ACCELEROMETER,
 	.init = lis3dh_acceleration_init,
 	.deinit = lis3dh_acceleration_deinit,
