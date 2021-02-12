@@ -1,52 +1,44 @@
-# Copyright (C) 2008 The Android Open Source Project
+# Copyright (C) 2013 Paul Kocialkowski <contact@paulk.fr>
 #
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
 #
-#      http://www.apache.org/licenses/LICENSE-2.0
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
 #
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 LOCAL_PATH := $(call my-dir)
 
-ifneq ($(TARGET_SIMULATOR),true)
-
-# HAL module implemenation, not prelinked, and stored in
-# hw/<SENSORS_HARDWARE_MODULE_ID>.<ro.product.board>.so
 include $(CLEAR_VARS)
-
-LOCAL_MODULE := sensors.$(TARGET_BOOTLOADER_BOARD_NAME)
-
-LOCAL_MODULE_RELATIVE_PATH := hw
-LOCAL_VENDOR_MODULE := true
-
-LOCAL_MODULE_TAGS := optional
-
-LOCAL_CFLAGS := -DLOG_TAG=\"Sensors\"
 
 ifeq ($(TARGET_DEVICE), n5110)
 LOCAL_CFLAGS := -DALS3201_SENSOR
 endif
 
 LOCAL_SRC_FILES := \
-		sensors.cpp \
-		SensorBase.cpp \
-		LightSensor.cpp \
-		ProximitySensor.cpp \
-		AccelSensor.cpp \
-		CompassSensor.cpp \
-		OrientationSensor.cpp \
-		InputEventReader.cpp
+	smdk4x12_sensors.c \
+	input.c \
+	al3201_light.c \
+	cm36651_proximity.c \
+	lsm330dlc_acceleration.c \
+	yas532_magnetic.c
 
-LOCAL_SHARED_LIBRARIES := liblog libcutils libdl
+LOCAL_C_INCLUDES := \
+	$(LOCAL_PATH)
+
+LOCAL_SHARED_LIBRARIES := libutils libcutils liblog libhardware
 LOCAL_PRELINK_MODULE := false
 
-include $(BUILD_SHARED_LIBRARY)
+LOCAL_MODULE := sensors.$(TARGET_BOOTLOADER_BOARD_NAME)
+LOCAL_MODULE_RELATIVE_PATH := hw
+LOCAL_VENDOR_MODULE := true
+LOCAL_MODULE_TAGS := optional
 
-endif
+include $(BUILD_SHARED_LIBRARY)
 
