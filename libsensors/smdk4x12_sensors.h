@@ -121,7 +121,7 @@ int sysfs_string_write(char *path, char *buffer, size_t length);
  * Sensors
  */
 
-extern struct smdk4x12_sensors_handlers lsm330dlc_acceleration;
+extern struct smdk4x12_sensors_handlers lis3dh_acceleration;
 extern struct smdk4x12_sensors_handlers akm8975;
 extern struct smdk4x12_sensors_handlers cm36651_proximity;
 extern struct smdk4x12_sensors_handlers al3201_light;
