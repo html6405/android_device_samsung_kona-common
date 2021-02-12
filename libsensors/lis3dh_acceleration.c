@@ -28,7 +28,7 @@
 #include <utils/Log.h>
 
 #include "smdk4x12_sensors.h"
-#include "lsm330dlc_accel.h"
+#include "lis3dh_accel.h"
 
 struct lis3dh_acceleration_data {
 	int64_t delay;
