@@ -65,6 +65,7 @@ struct smdk4x12_sensors_handlers *smdk4x12_sensors_handlers[] = {
 	&al3201_light,
 	&gp2ap030_proximity,
 	&yas532_magnetic,
+	&ms_x_orientation,
 };
 
 int smdk4x12_sensors_handlers_count = sizeof(smdk4x12_sensors_handlers) /
