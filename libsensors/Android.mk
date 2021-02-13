@@ -25,7 +25,7 @@ LOCAL_SRC_FILES := \
 	smdk4x12_sensors.c \
 	input.c \
 	al3201_light.c \
-	cm36651_proximity.c \
+	gp2ap030_proximity.c \
 	k3dh_acceleration.c \
 	yas532_magnetic.c
 
