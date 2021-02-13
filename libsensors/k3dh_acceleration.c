@@ -297,7 +297,7 @@ int k3dh_acceleration_get_data(struct smdk4x12_sensors_handlers *handlers,
 
 struct smdk4x12_sensors_handlers k3dh_acceleration = {
 	.name = "K3DH Acceleration",
-	.handle = SENSOR_TYPE_ACCELEROMETER,
+	.handle = SENSORS_ACCELERATION_HANDLE,
 	.init = k3dh_acceleration_init,
 	.deinit = k3dh_acceleration_deinit,
 	.activate = k3dh_acceleration_activate,

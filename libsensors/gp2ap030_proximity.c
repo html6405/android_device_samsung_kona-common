@@ -214,7 +214,7 @@ int gp2ap030_proximity_get_data(struct smdk4x12_sensors_handlers *handlers,
 
 struct smdk4x12_sensors_handlers gp2ap030_proximity = {
 	.name = "gp2ap030 Proximity",
-	.handle = SENSOR_TYPE_PROXIMITY,
+	.handle = SENSORS_PROXIMITY_HANDLE,
 	.init = gp2ap030_proximity_init,
 	.deinit = gp2ap030_proximity_deinit,
 	.activate = gp2ap030_proximity_activate,
