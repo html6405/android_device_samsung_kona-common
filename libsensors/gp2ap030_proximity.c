@@ -32,14 +32,14 @@
 
 #include "smdk4x12_sensors.h"
 
-struct cm36651_proximity_data {
+struct gp2ap030_proximity_data {
 	char path_enable[PATH_MAX];
 };
 
-int cm36651_proximity_init(struct smdk4x12_sensors_handlers *handlers,
+int gp2ap030_proximity_init(struct smdk4x12_sensors_handlers *handlers,
 	struct smdk4x12_sensors_device *device)
 {
-	struct cm36651_proximity_data *data = NULL;
+	struct gp2ap030_proximity_data *data = NULL;
 	char path[PATH_MAX] = { 0 };
 	int input_fd = -1;
 	int rc;
@@ -49,7 +49,7 @@ int cm36651_proximity_init(struct smdk4x12_sensors_handlers *handlers,
 	if (handlers == NULL)
 		return -EINVAL;
 
-	data = (struct cm36651_proximity_data *) calloc(1, sizeof(struct cm36651_proximity_data));
+	data = (struct gp2ap030_proximity_data *) calloc(1, sizeof(struct gp2ap030_proximity_data));
 
 	input_fd = input_open("proximity_sensor");
 	if (input_fd < 0) {
@@ -83,7 +83,7 @@ error:
 	return -1;
 }
 
-int cm36651_proximity_deinit(struct smdk4x12_sensors_handlers *handlers)
+int gp2ap030_proximity_deinit(struct smdk4x12_sensors_handlers *handlers)
 {
 	ALOGD("%s(%p)", __func__, handlers);
 
@@ -101,9 +101,9 @@ int cm36651_proximity_deinit(struct smdk4x12_sensors_handlers *handlers)
 	return 0;
 }
 
-int cm36651_proximity_activate(struct smdk4x12_sensors_handlers *handlers)
+int gp2ap030_proximity_activate(struct smdk4x12_sensors_handlers *handlers)
 {
-	struct cm36651_proximity_data *data;
+	struct gp2ap030_proximity_data *data;
 	int rc;
 
 	ALOGD("%s(%p)", __func__, handlers);
@@ -111,7 +111,7 @@ int cm36651_proximity_activate(struct smdk4x12_sensors_handlers *handlers)
 	if (handlers == NULL || handlers->data == NULL)
 		return -EINVAL;
 
-	data = (struct cm36651_proximity_data *) handlers->data;
+	data = (struct gp2ap030_proximity_data *) handlers->data;
 
 	rc = sysfs_value_write(data->path_enable, 1);
 	if (rc < 0) {
@@ -124,9 +124,9 @@ int cm36651_proximity_activate(struct smdk4x12_sensors_handlers *handlers)
 	return 0;
 }
 
-int cm36651_proximity_deactivate(struct smdk4x12_sensors_handlers *handlers)
+int gp2ap030_proximity_deactivate(struct smdk4x12_sensors_handlers *handlers)
 {
-	struct cm36651_proximity_data *data;
+	struct gp2ap030_proximity_data *data;
 	int rc;
 
 	ALOGD("%s(%p)", __func__, handlers);
@@ -134,7 +134,7 @@ int cm36651_proximity_deactivate(struct smdk4x12_sensors_handlers *handlers)
 	if (handlers == NULL || handlers->data == NULL)
 		return -EINVAL;
 
-	data = (struct cm36651_proximity_data *) handlers->data;
+	data = (struct gp2ap030_proximity_data *) handlers->data;
 
 	rc = sysfs_value_write(data->path_enable, 0);
 	if (rc < 0) {
@@ -147,21 +147,21 @@ int cm36651_proximity_deactivate(struct smdk4x12_sensors_handlers *handlers)
 	return 0;
 }
 
-int cm36651_proximity_set_delay(struct smdk4x12_sensors_handlers *handlers, int64_t delay)
+int gp2ap030_proximity_set_delay(struct smdk4x12_sensors_handlers *handlers, int64_t delay)
 {
 	ALOGD("%s(%p, %" PRId64 ")", __func__, handlers, delay);
 
 	return 0;
 }
 
-float cm36651_proximity_convert(int value)
+float gp2ap030_proximity_convert(int value)
 {
 	return (float) value * 6.0f;
 }
 
 extern int mFlushed;
 
-int cm36651_proximity_get_data(struct smdk4x12_sensors_handlers *handlers,
+int gp2ap030_proximity_get_data(struct smdk4x12_sensors_handlers *handlers,
 	struct sensors_event_t *event)
 {
 	struct input_event input_event;
@@ -202,7 +202,7 @@ int cm36651_proximity_get_data(struct smdk4x12_sensors_handlers *handlers,
 
 		if (input_event.type == EV_ABS) {
 			if (input_event.code == ABS_DISTANCE)
-				event->distance = cm36651_proximity_convert(input_event.value);
+				event->distance = gp2ap030_proximity_convert(input_event.value);
 		} else if (input_event.type == EV_SYN) {
 			if (input_event.code == SYN_REPORT)
 				event->timestamp = input_timestamp(&input_event);
@@ -212,15 +212,15 @@ int cm36651_proximity_get_data(struct smdk4x12_sensors_handlers *handlers,
 	return 0;
 }
 
-struct smdk4x12_sensors_handlers cm36651_proximity = {
-	.name = "CM36651 Proximity",
+struct smdk4x12_sensors_handlers gp2ap030_proximity = {
+	.name = "gp2ap030 Proximity",
 	.handle = SENSOR_TYPE_PROXIMITY,
-	.init = cm36651_proximity_init,
-	.deinit = cm36651_proximity_deinit,
-	.activate = cm36651_proximity_activate,
-	.deactivate = cm36651_proximity_deactivate,
-	.set_delay = cm36651_proximity_set_delay,
-	.get_data = cm36651_proximity_get_data,
+	.init = gp2ap030_proximity_init,
+	.deinit = gp2ap030_proximity_deinit,
+	.activate = gp2ap030_proximity_activate,
+	.deactivate = gp2ap030_proximity_deactivate,
+	.set_delay = gp2ap030_proximity_set_delay,
+	.get_data = gp2ap030_proximity_get_data,
 	.activated = 0,
 	.needed = 0,
 	.poll_fd = -1,
