@@ -68,7 +68,7 @@ int ms_x_orientation_init(struct smdk4x12_sensors_handlers *handlers,
 	}
 
 	snprintf(data->path_enable, PATH_MAX, "%s/enable", path);
-	snprintf(data->path_delay, PATH_MAX, "%s/poll_delay", path);
+	snprintf(data->path_delay, PATH_MAX, "%s/delay", path);
 
 	handlers->poll_fd = input_fd;
 	handlers->data = (void *) data;
@@ -123,7 +123,7 @@ int ms_x_orientation_activate(struct smdk4x12_sensors_handlers *handlers)
 		ALOGE("%s: Unable to write sysfs value", __func__);
 		return -1;
 	}
-
+    property_set("ctl.start", "orientationd");
 	handlers->activated = 1;
 
 	return 0;
@@ -146,7 +146,7 @@ int ms_x_orientation_deactivate(struct smdk4x12_sensors_handlers *handlers)
 		ALOGE("%s: Unable to write sysfs value", __func__);
 		return -1;
 	}
-
+    property_set("ctl.stop", "orientationd");
 	handlers->activated = 1;
 
 	return 0;
