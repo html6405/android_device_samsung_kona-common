@@ -39,12 +39,6 @@
 #define RANGE_A                     (4*GRAVITY_EARTH)
 #define RESOLUTION_A                (GRAVITY_EARTH / LSG)
 
-#define SENSORS_ACCELERATION     (1<<ID_A)
-#define SENSORS_MAGNETIC_FIELD   (1<<ID_M)
-#define SENSORS_ORIENTATION      (1<<ID_O)
-#define SENSORS_LIGHT            (1<<ID_L)
-#define SENSORS_PROXIMITY        (1<<ID_P)
-#define SENSORS_GYROSCOPE        (1<<ID_GY)
 
 #define SENSORS_ACCELERATION_HANDLE     0
 #define SENSORS_MAGNETIC_FIELD_HANDLE   1
@@ -58,7 +52,7 @@
 #define EVENT_TYPE_MAGV_Y           ABS_Y
 #define EVENT_TYPE_MAGV_Z           ABS_Z
 
-/* For lis3dh */
+/* For k3dh */
 #define EVENT_TYPE_ACCEL_X          ABS_X
 #define EVENT_TYPE_ACCEL_Y          ABS_Y
 #define EVENT_TYPE_ACCEL_Z          ABS_Z
@@ -126,7 +120,7 @@ int sysfs_string_write(char *path, char *buffer, size_t length);
  * Sensors
  */
 
-extern struct smdk4x12_sensors_handlers lis3dh_acceleration;
+extern struct smdk4x12_sensors_handlers k3dh_acceleration;
 extern struct smdk4x12_sensors_handlers akm8975;
 extern struct smdk4x12_sensors_handlers cm36651_proximity;
 extern struct smdk4x12_sensors_handlers al3201_light;

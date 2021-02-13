@@ -28,9 +28,9 @@
 #include <utils/Log.h>
 
 #include "smdk4x12_sensors.h"
-#include "lis3dh_accel.h"
+#include "k3dh_accel.h"
 
-struct lis3dh_acceleration_data {
+struct k3dh_acceleration_data {
 	int64_t delay;
 	int device_fd;
 
@@ -39,10 +39,10 @@ struct lis3dh_acceleration_data {
 	int thread_continue;
 };
 
-int lis3dh_acceleration_init(struct smdk4x12_sensors_handlers *handlers,
+int k3dh_acceleration_init(struct smdk4x12_sensors_handlers *handlers,
 	struct smdk4x12_sensors_device *device)
 {
-	struct lis3dh_acceleration_data *data = NULL;
+	struct k3dh_acceleration_data *data = NULL;
 	pthread_attr_t thread_attr;
 	int device_fd = -1;
 	int uinput_fd = -1;
@@ -55,7 +55,7 @@ int lis3dh_acceleration_init(struct smdk4x12_sensors_handlers *handlers,
 	if (handlers == NULL || device == NULL)
 		return -EINVAL;
 
-	data = (struct lis3dh_acceleration_data *) calloc(1, sizeof(struct lis3dh_acceleration_data));
+	data = (struct k3dh_acceleration_data *) calloc(1, sizeof(struct k3dh_acceleration_data));
 
 	device_fd = open("/dev/accelerometer", O_RDONLY);
 	if (device_fd < 0) {
@@ -99,16 +99,16 @@ error:
 	return -1;
 }
 
-int lis3dh_acceleration_deinit(struct smdk4x12_sensors_handlers *handlers)
+int k3dh_acceleration_deinit(struct smdk4x12_sensors_handlers *handlers)
 {
-	struct lis3dh_acceleration_data *data = NULL;
+	struct k3dh_acceleration_data *data = NULL;
 
 	ALOGD("%s(%p)", __func__, handlers);
 
 	if (handlers == NULL || handlers->data == NULL)
 		return -EINVAL;
 
-	data = (struct lis3dh_acceleration_data *) handlers->data;
+	data = (struct k3dh_acceleration_data *) handlers->data;
 
 	handlers->activated = 0;
 	data->thread_continue = 0;
@@ -130,9 +130,9 @@ int lis3dh_acceleration_deinit(struct smdk4x12_sensors_handlers *handlers)
 	return 0;
 }
 
-int lis3dh_acceleration_activate(struct smdk4x12_sensors_handlers *handlers)
+int k3dh_acceleration_activate(struct smdk4x12_sensors_handlers *handlers)
 {
-	struct lis3dh_acceleration_data *data;
+	struct k3dh_acceleration_data *data;
 	int device_fd;
 	int enable;
 	int rc;
@@ -142,28 +142,28 @@ int lis3dh_acceleration_activate(struct smdk4x12_sensors_handlers *handlers)
 	if (handlers == NULL || handlers->data == NULL)
 		return -EINVAL;
 
-	data = (struct lis3dh_acceleration_data *) handlers->data;
+	data = (struct k3dh_acceleration_data *) handlers->data;
 
 	device_fd = data->device_fd;
 	if (device_fd < 0)
 		return -1;
 
 	enable = 1;
-	rc = ioctl(device_fd, LIS3DH_ACCEL_IOCTL_SET_ENABLE, &enable);
+	rc = ioctl(device_fd, K3DH_IOCTL_SET_ENABLE, &enable);
 	if (rc < 0) {
-		ALOGE("%s: Unable to set lis3dh acceleration enable", __func__);
+		ALOGE("%s: Unable to set k3dh acceleration enable", __func__);
 		return -1;
 	}
-	
+
 	handlers->activated = 1;
 	pthread_mutex_unlock(&data->mutex);
 
 	return 0;
 }
 
-int lis3dh_acceleration_deactivate(struct smdk4x12_sensors_handlers *handlers)
+int k3dh_acceleration_deactivate(struct smdk4x12_sensors_handlers *handlers)
 {
-	struct lis3dh_acceleration_data *data;
+	struct k3dh_acceleration_data *data;
 	int device_fd;
 	int enable;
 	int rc;
@@ -173,17 +173,16 @@ int lis3dh_acceleration_deactivate(struct smdk4x12_sensors_handlers *handlers)
 	if (handlers == NULL || handlers->data == NULL)
 		return -EINVAL;
 
-	data = (struct lis3dh_acceleration_data *) handlers->data;
+	data = (struct k3dh_acceleration_data *) handlers->data;
 
 	device_fd = data->device_fd;
 	if (device_fd < 0)
 		return -1;
 
 	enable = 0;
-	rc = ioctl(device_fd, LIS3DH_ACCEL_IOCTL_SET_ENABLE, &enable);
+	rc = ioctl(device_fd, K3DH_IOCTL_SET_ENABLE, &enable);
 	if (rc < 0) {
-		ALOGE("%s: Unable to set lis3dh acceleration enable", __func__);
-		ALOGE("%s: Unable to set lis3dh acceleration enable", __func__);
+		ALOGE("%s: Unable to set k3dh acceleration enable", __func__);
 		return -1;
 	}
 
@@ -192,9 +191,9 @@ int lis3dh_acceleration_deactivate(struct smdk4x12_sensors_handlers *handlers)
 	return 0;
 }
 
-int lis3dh_acceleration_set_delay(struct smdk4x12_sensors_handlers *handlers, int64_t delay)
+int k3dh_acceleration_set_delay(struct smdk4x12_sensors_handlers *handlers, int64_t delay)
 {
-	struct lis3dh_acceleration_data *data;
+	struct k3dh_acceleration_data *data;
 	int64_t d;
 	int device_fd;
 	int rc;
@@ -204,16 +203,16 @@ int lis3dh_acceleration_set_delay(struct smdk4x12_sensors_handlers *handlers, in
 	if (handlers == NULL || handlers->data == NULL)
 		return -EINVAL;
 
-	data = (struct lis3dh_acceleration_data *) handlers->data;
+	data = (struct k3dh_acceleration_data *) handlers->data;
 
 	device_fd = data->device_fd;
 	if (device_fd < 0)
 		return -1;
 
 	d = (int64_t) delay;
-	rc = ioctl(device_fd, LIS3DH_ACCEL_IOCTL_SET_DELAY, &d);
+	rc = ioctl(device_fd, K3DH_IOCTL_SET_DELAY, &d);
 	if (rc < 0) {
-		ALOGE("%s: Unable to set lis3dh acceleration delay", __func__);
+		ALOGE("%s: Unable to set k3dh acceleration delay", __func__);
 		return -1;
 	}
 
@@ -222,17 +221,17 @@ int lis3dh_acceleration_set_delay(struct smdk4x12_sensors_handlers *handlers, in
 	return 0;
 }
 
-float lis3dh_acceleration_convert(int value)
+float k3dh_acceleration_convert(int value)
 {
 	return (float) (value) * RESOLUTION_A;
 }
 
 extern int mFlushed;
 
-int lis3dh_acceleration_get_data(struct smdk4x12_sensors_handlers *handlers,
+int k3dh_acceleration_get_data(struct smdk4x12_sensors_handlers *handlers,
 	struct sensors_event_t *event)
 {
-	struct lis3dh_acceleration_data *data;
+	struct k3dh_acceleration_data *data;
 	struct input_event input_event;
 	int input_fd;
 	int rc;
@@ -255,7 +254,7 @@ int lis3dh_acceleration_get_data(struct smdk4x12_sensors_handlers *handlers,
 		ALOGD("AkmSensor: %s Flushed sensorId: %d", __func__, sensorId);
 	}
 
-	data = (struct lis3dh_acceleration_data *) handlers->data;
+	data = (struct k3dh_acceleration_data *) handlers->data;
 
 	input_fd = handlers->poll_fd;
 	if (input_fd < 0)
@@ -266,7 +265,7 @@ int lis3dh_acceleration_get_data(struct smdk4x12_sensors_handlers *handlers,
 	event->sensor = handlers->handle;
 	event->type = handlers->handle;
 
-	event->acceleration.status = SENSOR_STATUS_ACCURACY_MEDIUM;
+	event->acceleration.status = SENSOR_STATUS_ACCURACY_HIGH;
 
 	do {
 		rc = read(input_fd, &input_event, sizeof(input_event));
@@ -276,13 +275,13 @@ int lis3dh_acceleration_get_data(struct smdk4x12_sensors_handlers *handlers,
 		if (input_event.type == EV_ABS) {
 			switch (input_event.code) {
 				case EVENT_TYPE_ACCEL_X:
-					event->acceleration.x = lis3dh_acceleration_convert(input_event.value);
+					event->acceleration.x = k3dh_acceleration_convert(input_event.value);
 					break;
 				case EVENT_TYPE_ACCEL_Y:
-					event->acceleration.y = lis3dh_acceleration_convert(input_event.value);
+					event->acceleration.y = k3dh_acceleration_convert(input_event.value);
 					break;
 				case EVENT_TYPE_ACCEL_Z:
-					event->acceleration.z = lis3dh_acceleration_convert(input_event.value);
+					event->acceleration.z = k3dh_acceleration_convert(input_event.value);
 					break;
 				default:
 					continue;
@@ -296,15 +295,15 @@ int lis3dh_acceleration_get_data(struct smdk4x12_sensors_handlers *handlers,
 	return 0;
 }
 
-struct smdk4x12_sensors_handlers lis3dh_acceleration = {
-	.name = "LIS3DH Acceleration",
+struct smdk4x12_sensors_handlers k3dh_acceleration = {
+	.name = "K3DH Acceleration",
 	.handle = SENSOR_TYPE_ACCELEROMETER,
-	.init = lis3dh_acceleration_init,
-	.deinit = lis3dh_acceleration_deinit,
-	.activate = lis3dh_acceleration_activate,
-	.deactivate = lis3dh_acceleration_deactivate,
-	.set_delay = lis3dh_acceleration_set_delay,
-	.get_data = lis3dh_acceleration_get_data,
+	.init = k3dh_acceleration_init,
+	.deinit = k3dh_acceleration_deinit,
+	.activate = k3dh_acceleration_activate,
+	.deactivate = k3dh_acceleration_deactivate,
+	.set_delay = k3dh_acceleration_set_delay,
+	.get_data = k3dh_acceleration_get_data,
 	.activated = 0,
 	.needed = 0,
 	.poll_fd = -1,
