@@ -257,7 +257,7 @@ int yas532_magnetic_get_data(struct smdk4x12_sensors_handlers *handlers,
 
 struct smdk4x12_sensors_handlers yas532_magnetic = {
 	.name = "MS-3R (YAS532) Magnetic Sensor",
-	.handle = SENSOR_TYPE_MAGNETIC_FIELD,
+	.handle = SENSORS_MAGNETIC_FIELD_HANDLE,
 	.init = yas532_magnetic_init,
 	.deinit = yas532_magnetic_deinit,
 	.activate = yas532_magnetic_activate,

@@ -232,7 +232,7 @@ int al3201_light_get_data(struct smdk4x12_sensors_handlers *handlers,
 
 struct smdk4x12_sensors_handlers al3201_light = {
 	.name = "AL3201 Light",
-	.handle = SENSOR_TYPE_LIGHT,
+	.handle = SENSORS_LIGHT_HANDLE,
 	.init = al3201_light_init,
 	.deinit = al3201_light_deinit,
 	.activate = al3201_light_activate,
