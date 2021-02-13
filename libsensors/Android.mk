@@ -26,7 +26,7 @@ LOCAL_SRC_FILES := \
 	input.c \
 	al3201_light.c \
 	cm36651_proximity.c \
-	lis3dh_acceleration.c \
+	k3dh_acceleration.c \
 	yas532_magnetic.c
 
 LOCAL_C_INCLUDES := \
