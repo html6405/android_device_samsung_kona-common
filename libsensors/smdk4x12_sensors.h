@@ -57,6 +57,10 @@
 #define EVENT_TYPE_ACCEL_Y          ABS_Y
 #define EVENT_TYPE_ACCEL_Z          ABS_Z
 
+#define EVENT_TYPE_YAW              REL_X
+#define EVENT_TYPE_PITCH            REL_Y
+#define EVENT_TYPE_ROLL             REL_Z
+
 struct smdk4x12_sensors_device;
 
 struct smdk4x12_sensors_handlers {
@@ -126,5 +130,6 @@ extern struct smdk4x12_sensors_handlers gp2ap030_proximity;
 extern struct smdk4x12_sensors_handlers al3201_light;
 extern struct smdk4x12_sensors_handlers yas532_magnetic;
 extern struct smdk4x12_sensors_handlers lps331ap;
+extern struct smdk4x12_sensors_handlers ms_x_orientation;
 
 #endif

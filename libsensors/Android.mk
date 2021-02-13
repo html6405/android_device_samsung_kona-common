@@ -27,7 +27,8 @@ LOCAL_SRC_FILES := \
 	al3201_light.c \
 	gp2ap030_proximity.c \
 	k3dh_acceleration.c \
-	yas532_magnetic.c
+	yas532_magnetic.c \
+	ms_x_orientation.c
 
 LOCAL_C_INCLUDES := \
 	$(LOCAL_PATH)
