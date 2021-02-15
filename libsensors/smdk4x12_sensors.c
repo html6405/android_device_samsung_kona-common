@@ -52,7 +52,7 @@ struct sensor_t smdk4x12_sensors[] = {
                                         SENSOR_TYPE_PROXIMITY, 5.0f, 1.0f, 0.75f, 0, 0, 0, SENSOR_STRING_TYPE_PROXIMITY, 0, 0,
                                         SENSOR_FLAG_WAKE_UP | SENSOR_FLAG_ON_CHANGE_MODE, {}, },
 #else
-       { "GP2AP030 Light Sensor", "Sharp", 1, SENSORS_LIGHT_HANDLE,
+       { "AL3201 Light Sensor", "LITEON", 1, SENSORS_LIGHT_HANDLE,
                       SENSOR_TYPE_LIGHT, 10240.0f, 1.0f, 0.75f, 0, 0, 0, SENSOR_STRING_TYPE_LIGHT, "", 0,
                       SENSOR_FLAG_ON_CHANGE_MODE, {}, },
 #endif
