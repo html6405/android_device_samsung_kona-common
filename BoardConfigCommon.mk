@@ -22,8 +22,14 @@ LOCAL_PATH := device/samsung/kona-common
 MALLOC_SVELTE := true
 TARGET_NEEDS_PLATFORM_TEXT_RELOCATIONS := true
 
+# Inline kernel building
+TARGET_KERNEL_SOURCE := kernel/samsung/kona
+
 # Recovery
 TARGET_RECOVERY_DENSITY := mdpi
+
+TW_THEME := portrait_mdpi
+TW_ROTATION := 270
 
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
