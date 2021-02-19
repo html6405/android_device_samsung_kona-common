@@ -39,14 +39,6 @@
 #define RANGE_A                     (4*GRAVITY_EARTH)
 #define RESOLUTION_A                (GRAVITY_EARTH / LSG)
 
-
-#define SENSORS_ACCELERATION_HANDLE     0
-#define SENSORS_MAGNETIC_FIELD_HANDLE   1
-#define SENSORS_ORIENTATION_HANDLE      2
-#define SENSORS_LIGHT_HANDLE            3
-#define SENSORS_PROXIMITY_HANDLE        4
-#define SENSORS_GYROSCOPE_HANDLE        5
-
 /* For AK8973iB */
 #define EVENT_TYPE_MAGV_X           ABS_X
 #define EVENT_TYPE_MAGV_Y           ABS_Y
