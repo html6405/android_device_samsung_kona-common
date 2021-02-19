@@ -35,24 +35,24 @@
  */
 
 struct sensor_t smdk4x12_sensors[] = {
-       { "LIS3DH Acceleration Sensor", "STMicroelectronics", 1, SENSORS_ACCELERATION_HANDLE,
+       { "LIS3DH Acceleration Sensor", "STMicroelectronics", 1, SENSOR_TYPE_ACCELEROMETER,
                SENSOR_TYPE_ACCELEROMETER, RANGE_A, RESOLUTION_A, 0.20f, 10000, 0, 0, SENSOR_STRING_TYPE_ACCELEROMETER, 0, 0,
                SENSOR_FLAG_ON_CHANGE_MODE, {}, },
-       { "MS-3R (YAS532) Magnetic Sensor", "Yamaha Corporation", 1, SENSORS_MAGNETIC_FIELD_HANDLE,
+       { "MS-3R (YAS532) Magnetic Sensor", "Yamaha Corporation", 1, SENSOR_TYPE_MAGNETIC_FIELD,
                SENSOR_TYPE_MAGNETIC_FIELD, 2000.0f, 0.06f, 6.8f, 10000, 0, 0, SENSOR_STRING_TYPE_MAGNETIC_FIELD, 0, 0,
                SENSOR_FLAG_ON_CHANGE_MODE, {}, },
-       { "MS-X Orientation Sensor", "Yamaha Corporation", 1, SENSORS_ORIENTATION_HANDLE,
+       { "MS-X Orientation Sensor", "Yamaha Corporation", 1, SENSOR_TYPE_ORIENTATION,
                       SENSOR_TYPE_ORIENTATION, 360.0f, CONVERT_O, 7.8f, 10000, 0, 0, SENSOR_STRING_TYPE_ORIENTATION, "", 0,
                       SENSOR_FLAG_CONTINUOUS_MODE, {}, },
 #ifndef ALS3201_SENSOR
-       { "GP2AP030 Light Sensor", "Sharp", 1, SENSORS_LIGHT_HANDLE,
+       { "GP2AP030 Light Sensor", "Sharp", 1, SENSOR_TYPE_LIGHT,
                SENSOR_TYPE_LIGHT, 10240.0f, 1.0f, 0.75f, 0, 0, 0, SENSOR_STRING_TYPE_LIGHT, "", 0,
                SENSOR_FLAG_ON_CHANGE_MODE, {}, },
-        { "GP2AP030 Proximity Sensor", "Sharp", 1, SENSORS_PROXIMITY_HANDLE,
+        { "GP2AP030 Proximity Sensor", "Sharp", 1, SENSOR_TYPE_PROXIMITY,
                                         SENSOR_TYPE_PROXIMITY, 5.0f, 1.0f, 0.75f, 0, 0, 0, SENSOR_STRING_TYPE_PROXIMITY, 0, 0,
                                         SENSOR_FLAG_WAKE_UP | SENSOR_FLAG_ON_CHANGE_MODE, {}, },
 #else
-       { "AL3201 Light Sensor", "LITEON", 1, SENSORS_LIGHT_HANDLE,
+       { "AL3201 Light Sensor", "LITEON", 1, SENSOR_TYPE_LIGHT,
                       SENSOR_TYPE_LIGHT, 10240.0f, 1.0f, 0.75f, 0, 0, 0, SENSOR_STRING_TYPE_LIGHT, "", 0,
                       SENSOR_FLAG_ON_CHANGE_MODE, {}, },
 #endif
