@@ -173,11 +173,6 @@ int ms_x_orientation_set_delay(struct smdk4x12_sensors_handlers *handlers, int64
 	return 0;
 }
 
-float ms_x_orientation_convert(int value)
-{
-	return (float)value * CONVERT_O;
-}
-
 extern int mFlushed;
 
 int ms_x_orientation_get_data(struct smdk4x12_sensors_handlers *handlers,
@@ -231,13 +226,13 @@ int ms_x_orientation_get_data(struct smdk4x12_sensors_handlers *handlers,
 		if (input_event.type == EV_ABS) {
 			switch (input_event.code) {
 				case EVENT_TYPE_YAW:
-					event->orientation.x = ms_x_orientation_convert(input_event.value);
+					event->orientation.x = input_event.value * CONVERT_O_A;
 					break;
 				case EVENT_TYPE_PITCH:
-					event->orientation.y = ms_x_orientation_convert(input_event.value);
+					event->orientation.y = input_event.value * CONVERT_O_P;
 					break;
 				case EVENT_TYPE_ROLL:
-					event->orientation.z = ms_x_orientation_convert(input_event.value);
+					event->orientation.z = input_event.value * CONVERT_O_R;
 					break;
 				default:
 					continue;
@@ -257,7 +252,7 @@ int ms_x_orientation_get_data(struct smdk4x12_sensors_handlers *handlers,
 
 struct smdk4x12_sensors_handlers ms_x_orientation = {
 	.name = "MS-X Orientation Sensor",
-	.handle = SENSORS_ORIENTATION_HANDLE,
+	.handle = SENSOR_TYPE_ORIENTATION,
 	.init = ms_x_orientation_init,
 	.deinit = ms_x_orientation_deinit,
 	.activate = ms_x_orientation_activate,
