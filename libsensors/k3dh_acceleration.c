@@ -20,6 +20,10 @@
 #include <stdint.h>
 #include <fcntl.h>
 #include <errno.h>
+#include <math.h>
+#include <sys/types.h>
+#include <linux/ioctl.h>
+#include <linux/input.h>
 
 #include <hardware/sensors.h>
 #include <hardware/hardware.h>
@@ -28,56 +32,44 @@
 #include <utils/Log.h>
 
 #include "smdk4x12_sensors.h"
-#include "k3dh_accel.h"
 
 struct k3dh_acceleration_data {
-	int64_t delay;
-	int device_fd;
+	char path_enable[PATH_MAX];
+	char path_delay[PATH_MAX];
 
-	pthread_t thread;
-	pthread_mutex_t mutex;
-	int thread_continue;
+	sensors_vec_t acceleration;
 };
 
 int k3dh_acceleration_init(struct smdk4x12_sensors_handlers *handlers,
 	struct smdk4x12_sensors_device *device)
 {
 	struct k3dh_acceleration_data *data = NULL;
-	pthread_attr_t thread_attr;
-	int device_fd = -1;
-	int uinput_fd = -1;
+	char path[PATH_MAX] = { 0 };
 	int input_fd = -1;
 	int rc;
-	int i;
 
 	ALOGD("%s(%p, %p)", __func__, handlers, device);
 
-	if (handlers == NULL || device == NULL)
+	if (handlers == NULL)
 		return -EINVAL;
 
 	data = (struct k3dh_acceleration_data *) calloc(1, sizeof(struct k3dh_acceleration_data));
 
-	device_fd = open("/dev/accelerometer", O_RDONLY);
-	if (device_fd < 0) {
-		ALOGE("%s: Unable to open device", __func__);
-		goto error;
-	}
-
 	input_fd = input_open("accelerometer");
 	if (input_fd < 0) {
-		ALOGE("%s: Unable to open acceleration input", __func__);
+		ALOGE("%s: Unable to open input", __func__);
 		goto error;
 	}
 
-	data->thread_continue = 1;
+	rc = sysfs_path_prefix("accelerometer", (char *) &path);
+	if (rc < 0 || path[0] == '\0') {
+		ALOGE("%s: Unable to open sysfs", __func__);
+		goto error;
+	}
 
-	pthread_mutex_init(&data->mutex, NULL);
-	pthread_mutex_lock(&data->mutex);
+	snprintf(data->path_enable, PATH_MAX, "%s/enable", path);
+	snprintf(data->path_delay, PATH_MAX, "%s/poll_delay", path);
 
-	pthread_attr_init(&thread_attr);
-	pthread_attr_setdetachstate(&thread_attr, PTHREAD_CREATE_DETACHED);
-
-	data->device_fd = device_fd;
 	handlers->poll_fd = input_fd;
 	handlers->data = (void *) data;
 
@@ -90,9 +82,6 @@ error:
 	if (input_fd >= 0)
 		close(input_fd);
 
-	if (device_fd >= 0)
-		close(device_fd);
-
 	handlers->poll_fd = -1;
 	handlers->data = NULL;
 
@@ -101,30 +90,17 @@ error:
 
 int k3dh_acceleration_deinit(struct smdk4x12_sensors_handlers *handlers)
 {
-	struct k3dh_acceleration_data *data = NULL;
-
 	ALOGD("%s(%p)", __func__, handlers);
 
-	if (handlers == NULL || handlers->data == NULL)
+	if (handlers == NULL)
 		return -EINVAL;
-
-	data = (struct k3dh_acceleration_data *) handlers->data;
-
-	handlers->activated = 0;
-	data->thread_continue = 0;
-	pthread_mutex_unlock(&data->mutex);
-
-	pthread_mutex_destroy(&data->mutex);
 
 	if (handlers->poll_fd >= 0)
 		close(handlers->poll_fd);
 	handlers->poll_fd = -1;
 
-	if (data->device_fd >= 0)
-		close(data->device_fd);
-	data->device_fd = -1;
-
-	free(handlers->data);
+	if (handlers->data != NULL)
+		free(handlers->data);
 	handlers->data = NULL;
 
 	return 0;
@@ -133,8 +109,6 @@ int k3dh_acceleration_deinit(struct smdk4x12_sensors_handlers *handlers)
 int k3dh_acceleration_activate(struct smdk4x12_sensors_handlers *handlers)
 {
 	struct k3dh_acceleration_data *data;
-	int device_fd;
-	int enable;
 	int rc;
 
 	ALOGD("%s(%p)", __func__, handlers);
@@ -144,19 +118,13 @@ int k3dh_acceleration_activate(struct smdk4x12_sensors_handlers *handlers)
 
 	data = (struct k3dh_acceleration_data *) handlers->data;
 
-	device_fd = data->device_fd;
-	if (device_fd < 0)
-		return -1;
-
-	enable = 1;
-	rc = ioctl(device_fd, K3DH_IOCTL_SET_ENABLE, &enable);
+	rc = sysfs_value_write(data->path_enable, 1);
 	if (rc < 0) {
-		ALOGE("%s: Unable to set k3dh acceleration enable", __func__);
+		ALOGE("%s: Unable to write sysfs value", __func__);
 		return -1;
 	}
 
 	handlers->activated = 1;
-	pthread_mutex_unlock(&data->mutex);
 
 	return 0;
 }
@@ -164,8 +132,6 @@ int k3dh_acceleration_activate(struct smdk4x12_sensors_handlers *handlers)
 int k3dh_acceleration_deactivate(struct smdk4x12_sensors_handlers *handlers)
 {
 	struct k3dh_acceleration_data *data;
-	int device_fd;
-	int enable;
 	int rc;
 
 	ALOGD("%s(%p)", __func__, handlers);
@@ -175,18 +141,13 @@ int k3dh_acceleration_deactivate(struct smdk4x12_sensors_handlers *handlers)
 
 	data = (struct k3dh_acceleration_data *) handlers->data;
 
-	device_fd = data->device_fd;
-	if (device_fd < 0)
-		return -1;
-
-	enable = 0;
-	rc = ioctl(device_fd, K3DH_IOCTL_SET_ENABLE, &enable);
+	rc = sysfs_value_write(data->path_enable, 0);
 	if (rc < 0) {
-		ALOGE("%s: Unable to set k3dh acceleration enable", __func__);
+		ALOGE("%s: Unable to write sysfs value", __func__);
 		return -1;
 	}
 
-	handlers->activated = 0;
+	handlers->activated = 1;
 
 	return 0;
 }
@@ -194,8 +155,6 @@ int k3dh_acceleration_deactivate(struct smdk4x12_sensors_handlers *handlers)
 int k3dh_acceleration_set_delay(struct smdk4x12_sensors_handlers *handlers, int64_t delay)
 {
 	struct k3dh_acceleration_data *data;
-	int64_t d;
-	int device_fd;
 	int rc;
 
 	ALOGD("%s(%p, %" PRId64 ")", __func__, handlers, delay);
@@ -205,18 +164,11 @@ int k3dh_acceleration_set_delay(struct smdk4x12_sensors_handlers *handlers, int6
 
 	data = (struct k3dh_acceleration_data *) handlers->data;
 
-	device_fd = data->device_fd;
-	if (device_fd < 0)
-		return -1;
-
-	d = (int64_t) delay;
-	rc = ioctl(device_fd, K3DH_IOCTL_SET_DELAY, &d);
+	rc = sysfs_value_write(data->path_delay, delay);
 	if (rc < 0) {
-		ALOGE("%s: Unable to set k3dh acceleration delay", __func__);
+		ALOGE("%s: Unable to write sysfs value", __func__);
 		return -1;
 	}
-
-	data->delay = delay;
 
 	return 0;
 }
@@ -258,12 +210,16 @@ int k3dh_acceleration_get_data(struct smdk4x12_sensors_handlers *handlers,
 
 	input_fd = handlers->poll_fd;
 	if (input_fd < 0)
-		return -1;
+		return -EINVAL;
 
 	memset(event, 0, sizeof(struct sensors_event_t));
 	event->version = sizeof(struct sensors_event_t);
 	event->sensor = handlers->handle;
 	event->type = handlers->handle;
+
+	event->acceleration.x = data->acceleration.x;
+	event->acceleration.y = data->acceleration.y;
+	event->acceleration.z = data->acceleration.z;
 
 	event->acceleration.status = SENSOR_STATUS_ACCURACY_HIGH;
 
@@ -292,12 +248,16 @@ int k3dh_acceleration_get_data(struct smdk4x12_sensors_handlers *handlers,
 		}
 	} while (input_event.type != EV_SYN);
 
+	data->acceleration.x = event->acceleration.x;
+	data->acceleration.y = event->acceleration.y;
+	data->acceleration.z = event->acceleration.z;
+
 	return 0;
 }
 
 struct smdk4x12_sensors_handlers k3dh_acceleration = {
 	.name = "K3DH Acceleration",
-	.handle = SENSORS_ACCELERATION_HANDLE,
+	.handle = SENSOR_TYPE_ACCELEROMETER,
 	.init = k3dh_acceleration_init,
 	.deinit = k3dh_acceleration_deinit,
 	.activate = k3dh_acceleration_activate,
