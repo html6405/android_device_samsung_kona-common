@@ -44,7 +44,8 @@ PRODUCT_PACKAGES += \
 # Sensors
 PRODUCT_PACKAGES += \
     sensors.smdk4x12 \
-    lightsensor.smdk4x12
+    lightsensor.smdk4x12 \
+    libsamsung_symbols
 
 # Power
 PRODUCT_PACKAGES += \
