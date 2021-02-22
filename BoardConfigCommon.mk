@@ -61,4 +61,4 @@ RECOVERY_FSTAB_VERSION := 2
 TARGET_POWERHAL_VARIANT := pegasusq
 
 TARGET_LD_SHIM_LIBS += \
-    /system/bin/gpsd|libsamsung_symbols.so
+    /system/vendor/bin/gpsd|libsamsung_symbols.so
