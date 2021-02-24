@@ -34,8 +34,8 @@ allow ueventd firmware_exynos:file getattr;
 
 
 
-#============= glgps ==============
-allow glgps glgps_exec:file execute_no_trans;
+#============= gpsd ==============
+allow gpsd gpsd_exec:file execute_no_trans;
 
 #============= hal_light_default ==============
 allow hal_light_default sysfs:file read;
