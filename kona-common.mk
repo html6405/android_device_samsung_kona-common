@@ -38,7 +38,6 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
 	MagiskManager \
-	OpenCamera \
 	Via
 
 # Sensors
