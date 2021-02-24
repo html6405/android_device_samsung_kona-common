@@ -23,4 +23,4 @@ allow init socket_device:sock_file { unlink };
 allow init hwservicemanager:binder { transfer call };
 allow init system_data_file:file { lock };
 
-domain_auto_trans(init, rootfs, macloader, tinyplay)
+domain_auto_trans(init, rootfs, cpboot-daemon, macloader, tinyplay)

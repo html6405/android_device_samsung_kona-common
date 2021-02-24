@@ -1,4 +1,12 @@
-allow glgps system_data_file:file { lock open };
+
+#allow cpboot-daemon default_prop:property_service set;
+allow cpboot-daemon device:chr_file { create unlink };
+#allow cpboot-daemon device:chr_file { open read write };
+#allow cpboot-daemon log_device:chr_file { write open };
+#allow cpboot-daemon log_device:dir search;
+allow cpboot-daemon self:capability { dac_override };
+#allow cpboot-daemon system_file:file entrypoint;
+allow gpsd system_data_file:file { lock open };
 #allow hal_power_default default_android_hwservice:hwservice_manager add;
 #allow macloader vendor_file:file entrypoint;
 allow radioreset self:capability sys_nice;
