@@ -17,7 +17,9 @@ LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 
-LOCAL_SRC_FILES := symbols.cpp
+LOCAL_SRC_FILES := \
+	symbols.cpp \
+    samsung_atomic.cpp
 
 LOCAL_SHARED_LIBRARIES := libbinder libgui
 
