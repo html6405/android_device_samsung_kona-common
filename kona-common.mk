@@ -37,7 +37,6 @@ PRODUCT_PACKAGES += \
     tiny_hw
 
 PRODUCT_PACKAGES += \
-	MagiskManager \
 	Via
 
 # Sensors
