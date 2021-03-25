@@ -1,0 +1,4 @@
+allow zygote sysfs_cpuinfo:dir { open read search };
+allow zygote sysfs_cpuinfo:file { getattr open read };
+allow zygote gpsd_exec:file getattr;
+allow zygote proc_cmdline:file { getattr open read };

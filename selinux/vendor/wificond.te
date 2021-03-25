@@ -1,0 +1,1 @@
+allow wificond gpsd_exec:file getattr;
