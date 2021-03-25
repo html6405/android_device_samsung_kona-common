@@ -1,0 +1,4 @@
+allow mediaextractor sysfs_cpuinfo:dir search;
+allow mediaextractor sysfs_cpuinfo:file { getattr open read };
+allow mediaextractor mediaextractor_update_service:service_manager add;
+allow mediaextractor gpsd_exec:file getattr;

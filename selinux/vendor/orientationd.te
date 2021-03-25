@@ -1,0 +1,12 @@
+type orientationd, domain;
+type orientationd_exec, exec_type, file_type;
+init_daemon_domain(orientationd)
+domain_trans(init, rootfs, orientationd)
+
+allow orientationd input_device:chr_file { write read ioctl open };
+allow orientationd input_device:dir { search read open };
+allow orientationd sysfs:dir { open read };
+allow orientationd sysfs:file { open read };
+allow orientationd sysfs_cpuinfo:dir { search };
+allow orientationd sysfs_cpuinfo:file { read open getattr };
+allow orientationd gpsd_exec:file getattr;

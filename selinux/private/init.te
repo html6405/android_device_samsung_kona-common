@@ -1,0 +1,2 @@
+allow init firmware_exynos:dir { read open };
+type_transition init sysfs:file sysfs_cpuinfo;
