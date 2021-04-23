@@ -60,5 +60,10 @@ RECOVERY_FSTAB_VERSION := 2
 # PowerHAL
 TARGET_POWERHAL_VARIANT := pegasusq
 
+# Init
+ifneq ($(WITH_TWRP), true)
+TARGET_INIT_VENDOR_LIB := libinit_kona
+endif
+
 TARGET_LD_SHIM_LIBS += \
     /system/vendor/bin/gpsd|libsamsung_symbols.so
