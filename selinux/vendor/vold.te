@@ -6,4 +6,4 @@ allow vold sysfs_zram:file write;
 allow vold efs_device_file:dir { ioctl open read };
 allow vold sysfs_mmc:file write;
 allow vold preload_block_device:blk_file rw_file_perms;
-allow vold gpsd_exec:file getattr;
+allow vold rootfs:dir { add_name create setattr write };
