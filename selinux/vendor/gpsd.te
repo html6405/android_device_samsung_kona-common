@@ -34,3 +34,7 @@ allow gpsd gps_device:chr_file getattr;
 allow gpsd gps_data_file:fifo_file { open read write };
 allow gpsd gps_data_file:file { lock open read write getattr };
 allow gpsd system_server:fd use;
+allow gpsd system_data_file:dir { add_name write };
+allow gpsd system_data_file:fifo_file create;
+allow gpsd gps_data_file:fifo_file { getattr unlink };
+allow gpsd system_data_file:dir remove_name;
