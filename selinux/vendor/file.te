@@ -20,3 +20,4 @@ type sysfs_wifi_writeable, fs_type, sysfs_type;
 type wifi_socket, file_type, data_file_type;
 type geomagneticd_config_file, file_type, data_file_type, core_data_file_type;
 type sysfs_sensors, fs_type, sysfs_type;
+type display_vendor_data_file, file_type, data_file_type;
