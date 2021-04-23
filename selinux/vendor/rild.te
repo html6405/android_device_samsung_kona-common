@@ -96,3 +96,8 @@ allow rild mediametrics:dir search;
 allow rild mediaserver:dir search;
 allow rild unlabeled:file rw_file_perms;
 allow rild unlabeled:dir rw_file_perms;
+allow rild gatekeeperd:dir search;
+allow rild mediacodec:dir search;
+allow rild perfprofd:dir search;
+allow rild tombstoned:dir search;
+allow rild wificond:dir search;
