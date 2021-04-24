@@ -22,8 +22,3 @@
 extern "C" void _ZN6google8protobuf8internal13VerifyVersionEiiPKc();
 extern "C" void _ZN6google8protobuf8internal13VerifyVersionEiiPKc(){}
 
-// gpsd
-
-// android::SensorManager::getSensorList(android::Sensor const* const**) const
-extern "C" void _ZNK7android13SensorManager13getSensorListEPPKPKNS_6SensorE();
-extern "C" void _ZNK7android13SensorManager13getSensorListEPPKPKNS_6SensorE(){}

@@ -19,9 +19,10 @@ include $(CLEAR_VARS)
 
 LOCAL_SRC_FILES := \
 	symbols.cpp \
-    samsung_atomic.cpp
+    samsung_atomic.cpp \
+    gps_symbols.cpp
 
-LOCAL_SHARED_LIBRARIES := libbinder libgui
+LOCAL_SHARED_LIBRARIES := libbinder libgui libssl
 
 LOCAL_MODULE := libsamsung_symbols
 LOCAL_MODULE_TAGS := optional
