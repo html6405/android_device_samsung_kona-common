@@ -16,9 +16,9 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-    <string name="updater_server_url" translatable="false">http://html6405.ddns.net/{device}/html6405/LOS16.xml</string>
+    <string name="updater_server_url" translatable="false">http://html6405.ddns.net/{device}/html6405/LOS18.xml</string>
 
-    <string name="menu_changelog_url" translatable="false">https://forum.xda-developers.com/t/lineageos-16-0-android-9-for-gt-n5100-gt-n5110-gt-n5120-beta.4231355/</string>
+    <string name="menu_changelog_url" translatable="false">https://forum.xda-developers.com/t/lineageos-18-1-android-11-for-gt-n5100-gt-n5110-gt-n5120-alpha.4267989/post-84908057</string>
 
 </resources>
 
