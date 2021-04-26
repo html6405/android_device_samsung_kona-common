@@ -110,6 +110,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/ums_init.sh:system/bin/ums_init.sh
 
+# Proprietary blobs dependency on libstlport
+PRODUCT_PACKAGES +=  libstlport
+
 # Set product characteristic to tablet, needed for some ui elements
 PRODUCT_CHARACTERISTICS := tablet
 
