@@ -70,8 +70,9 @@
 /system/vendor/firmware/mfc_fw.bin                               u:object_r:firmware_mfc:s0
 
 # Display
-/sys/devices/platform/samsung-pd.2/mdnie/mdnie(/.*)?             u:object_r:sysfs_display:s0
-/sys/devices/platform/samsung-pd.2/s3cfb.0(/.*)?                 u:object_r:sysfs_display:s0
+/sys/devices/platform/s5p-dsim.0(/.*)?			u:object_r:display_vendor_data_file:s0
+/sys/devices/platform/samsung-pd.2/mdnie/mdnie(/.*)?		u:object_r:display_vendor_data_file:s0
+/sys/devices/platform/samsung-pd.2/s3cfb.0(/.*)?		u:object_r:sysfs_display:s0
 
 # Executables
 /system/bin/cbd                                                  u:object_r:cpboot-daemon_exec:s0
