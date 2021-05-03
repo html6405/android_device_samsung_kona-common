@@ -59,7 +59,6 @@ void vendor_load_properties()
     };
 
     if (bootloader.find("N5100") == 0) {
-        /* jfltetmo */
         for (const auto &source : ro_product_props_default_source_order) {
             set_ro_product_prop(source, "fingerprint", "samsung/kona3gxx/kona3g:4.4.2/KOT49H/N5100XXSDQA2:user/release-keys");
             set_ro_product_prop(source, "device", "kona3g");
@@ -69,7 +68,6 @@ void vendor_load_properties()
         property_override("ro.build.description", "kona3gxx-user 4.4.2 KOT49H N5100XXSDQA2 release-keys");
         property_override("ro.build.product", "n5100");
     } else if (bootloader.find("N5110") == 0) {
-        /* jgedlte */
         for (const auto &source : ro_product_props_default_source_order) {
             set_ro_product_prop(source, "fingerprint", "samsung/konawifixx/konawifi:4.4.2/KOT49H/N5110XXDNF1:user/release-keys");
             set_ro_product_prop(source, "device", "konawifi");
@@ -79,7 +77,6 @@ void vendor_load_properties()
         property_override("ro.build.description", "konawifixx-user 4.4.2 KOT49H N5110XXDNF1 release-keys");
         property_override("ro.build.product", "n5110");
     } else if (bootloader.find("N5120") == 0) {
-        /* jfltexx */
         for (const auto &source : ro_product_props_default_source_order) {
             set_ro_product_prop(source, "fingerprint", "samsung/konaltexx/konalte:4.4.2/KOT49H/N5120XXDOD1:user/release-keys");
             set_ro_product_prop(source, "device", "konalte");
@@ -88,8 +85,16 @@ void vendor_load_properties()
         }
         property_override("ro.build.description", "konaltexx-user 4.4.2 KOT49H N5120XXDOD1 release-keys");
         property_override("ro.build.product", "n5120");
+} else if (bootloader.find("I467M") == 0) {
+        for (const auto &source : ro_product_props_default_source_order) {
+            set_ro_product_prop(source, "fingerprint", "samsung/konaltevl/konaltecan:4.4.2/KOT49H/I467MVLUBNF5:user/release-keys");
+            set_ro_product_prop(source, "device", "konaltecan");
+            set_ro_product_prop(source, "model", "SGH-I467M");
+            set_ro_product_prop(source, "name", "konaltevl");
+        }
+        property_override("ro.build.description", "konaltevl-user 4.4.2 KOT49H I467MVLUBNF5 release-keys");
+        property_override("ro.build.product", "konaltecan");
     } else {
-        /* jfltevzw */
         for (const auto &source : ro_product_props_default_source_order) {
             set_ro_product_prop(source, "fingerprint", "samsung/kona3gxx/kona3g:4.4.2/KOT49H/N5100XXSDQA2:user/release-keys");
             set_ro_product_prop(source, "device", "kona3g");
