@@ -72,6 +72,13 @@ void vendor_load_properties()
         property_override_dual("ro.build.description", "ro.vendor.build.description", "konaltexx-user 4.4.2 KOT49H N5120XXDOD1 release-keys");
         property_override_dual("ro.build.fingerprint", "ro.vendor.build.fingerprint", "samsung/konaltexx/konalte:4.4.2/KOT49H/N5120XXDOD1:user/release-keys");
         property_override("ro.build.product", "n5120");
+    } else if (bootloader.find("I467M") != std::string::npos) {
+        property_override_dual("ro.product.model", "ro.vendor.product.model", "SGH-I467M");
+        property_override_dual("ro.product.device", "ro.vendor.product.device", "konaltecan");
+        property_override_dual("ro.product.name", "ro.vendor.product.name", "konaltevl");
+        property_override_dual("ro.build.description", "ro.vendor.build.description", "konaltevl-user 4.4.2 KOT49H I467MVLUBNF5 release-keys");
+        property_override_dual("ro.build.fingerprint", "ro.vendor.build.fingerprint", "samsung/konaltevl/konaltecan:4.4.2/KOT49H/I467MVLUBNF5:user/release-keys");
+        property_override("ro.build.product", "konaltecan");
     } else {
         /* Fall back to GT-N5110 (Wifi version) */
         property_override_dual("ro.product.model", "ro.vendor.product.model", "GT-N5110");
