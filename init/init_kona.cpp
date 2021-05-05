@@ -67,6 +67,15 @@ void vendor_load_properties()
         }
         property_override("ro.build.description", "kona3gxx-user 4.4.2 KOT49H N5100XXSDQA2 release-keys");
         property_override("ro.build.product", "n5100");
+    } else if (bootloader.find("N5105") == 0) {
+        for (const auto &source : ro_product_props_default_source_order) {
+            set_ro_product_prop(source, "fingerprint", "samsung/kona3gjt/kona3g:4.2.2/JDQ39/N5105JVCMI2:user/release-keys");
+            set_ro_product_prop(source, "device", "kona3g");
+            set_ro_product_prop(source, "model", "GT-N5105");
+            set_ro_product_prop(source, "name", "kona3gjt");
+        }
+        property_override("ro.build.description", "kona3gjt-user 4.2.2 JDQ39 N5105JVCMI2 release-keys");
+        property_override("ro.build.product", "kona3g");
     } else if (bootloader.find("N5110") == 0) {
         for (const auto &source : ro_product_props_default_source_order) {
             set_ro_product_prop(source, "fingerprint", "samsung/konawifixx/konawifi:4.4.2/KOT49H/N5110XXDNF1:user/release-keys");
