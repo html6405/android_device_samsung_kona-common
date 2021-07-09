@@ -116,10 +116,6 @@ PRODUCT_PACKAGES +=  libstlport
 # Set product characteristic to tablet, needed for some ui elements
 PRODUCT_CHARACTERISTICS := tablet
 
-# Vendor security patch level
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.lineage.build.vendor_security_patch=2015-11-05
-
 $(call inherit-product, frameworks/native/build/tablet-10in-xhdpi-2048-dalvik-heap.mk)
 
 $(call inherit-product, vendor/samsung/kona-common/kona-vendor.mk)
