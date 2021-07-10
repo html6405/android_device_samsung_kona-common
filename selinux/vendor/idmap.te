@@ -1,3 +1,3 @@
-allow idmap sysfs_cpuinfo:dir search;
-allow idmap sysfs_cpuinfo:file { getattr open read };
+allow idmap sysfs_devices_system_cpu:dir search;
+allow idmap sysfs_devices_system_cpu:file { getattr open read };
 allow idmap gpsd_exec:file getattr;

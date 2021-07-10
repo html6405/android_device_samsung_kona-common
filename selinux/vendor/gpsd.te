@@ -1,9 +1,7 @@
-type gpsd, domain;
+type_transition gpsd system_data_file:file gps_data_file;
+
 permissive gpsd;
 init_daemon_domain(gpsd);
-
-#type_transition gpsd system_data_file:file gps_data_file;
-
 allow gpsd rild:unix_stream_socket connectto;
 allow gpsd sysfs_wake_lock:file { read write open };
 allow gpsd gps_device:chr_file { read write ioctl open };
@@ -20,8 +18,8 @@ allow gpsd netd:unix_stream_socket connectto;
 allow gpsd self:tcp_socket create;
 allow gpsd sensorservice_service:service_manager find;
 allow gpsd sysfs:file { open read write };
-allow gpsd sysfs_cpuinfo:dir search;
-allow gpsd sysfs_cpuinfo:file { getattr open read };
+allow gpsd sysfs_devices_system_cpu:dir search;
+allow gpsd sysfs_devices_system_cpu:file { getattr open read };
 allow gpsd system_data_file:fifo_file write;
 allow gpsd system_server:unix_stream_socket { read write };
 allow gpsd port:tcp_socket { name_connect name_bind };
@@ -34,3 +32,7 @@ allow gpsd gps_device:chr_file getattr;
 allow gpsd gps_data_file:fifo_file { open read write };
 allow gpsd gps_data_file:file { lock open read write getattr };
 allow gpsd system_server:fd use;
+allow gpsd gps_data_file:dir search;
+allow gpsd hwservicemanager:binder call;
+allow gpsd hwservicemanager_prop:file { getattr open read };
+

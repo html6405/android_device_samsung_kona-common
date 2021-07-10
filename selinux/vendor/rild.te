@@ -84,7 +84,6 @@ allow rild adbd:dir search;
 allow rild cpboot-daemon:dir search;
 allow rild geomagneticd:dir search;
 allow rild gpsd:dir search;
-allow rild thermalserviced:dir search;
 allow rild cameraserver:dir search;
 allow rild drmserver:dir search;
 allow rild incidentd:dir search;

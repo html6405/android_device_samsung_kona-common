@@ -1,5 +1,5 @@
-allow servicemanager sysfs_cpuinfo:dir search;
-allow servicemanager sysfs_cpuinfo:file { getattr open read };
+allow servicemanager sysfs_devices_system_cpu:dir search;
+allow servicemanager sysfs_devices_system_cpu:file { getattr open read };
 allow servicemanager init:dir search;
 allow servicemanager init:file { open read };
 allow servicemanager init:process getattr;

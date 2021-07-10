@@ -7,6 +7,6 @@ allow orientationd input_device:chr_file { write read ioctl open };
 allow orientationd input_device:dir { search read open };
 allow orientationd sysfs:dir { open read };
 allow orientationd sysfs:file { open read };
-allow orientationd sysfs_cpuinfo:dir { search };
-allow orientationd sysfs_cpuinfo:file { read open getattr };
+allow orientationd sysfs_devices_system_cpu:dir { search };
+allow orientationd sysfs_devices_system_cpu:file { read open getattr };
 allow orientationd gpsd_exec:file getattr;

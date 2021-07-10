@@ -1,3 +1,3 @@
-allow vndservicemanager sysfs_cpuinfo:dir search;
-allow vndservicemanager sysfs_cpuinfo:file { getattr open read };
+allow vndservicemanager sysfs_devices_system_cpu:dir search;
+allow vndservicemanager sysfs_devices_system_cpu:file { getattr open read };
 allow vndservicemanager gpsd_exec:file getattr;

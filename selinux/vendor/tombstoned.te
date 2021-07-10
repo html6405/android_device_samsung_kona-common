@@ -1,4 +1,4 @@
-allow tombstoned sysfs_cpuinfo:dir search;
-allow tombstoned sysfs_cpuinfo:file { open read };
-allow tombstoned sysfs_cpuinfo:file getattr;
+allow tombstoned sysfs_devices_system_cpu:dir search;
+allow tombstoned sysfs_devices_system_cpu:file { open read };
+allow tombstoned sysfs_devices_system_cpu:file getattr;
 allow tombstoned gpsd_exec:file getattr;

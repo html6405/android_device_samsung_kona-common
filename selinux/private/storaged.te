@@ -1,5 +1,5 @@
-allow storaged sysfs_cpuinfo:dir search;
-allow storaged sysfs_cpuinfo:file { getattr open read };
+allow storaged sysfs_devices_system_cpu:dir search;
+allow storaged sysfs_devices_system_cpu:file { getattr open read };
 allow storaged sysfs_mmc:dir search;
 allow storaged sysfs_mmc:file { getattr open read };
 allow storaged debugfs:file getattr;
