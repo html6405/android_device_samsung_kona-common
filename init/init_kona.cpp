@@ -88,6 +88,7 @@ void vendor_load_properties()
         }
         property_override("ro.build.description", "konawifixx-user 4.4.2 KOT49H N5110XXDNF1 release-keys");
         property_override("ro.build.product", "n5110");
+        property_override("ro.radio.noril", "yes");
     } else if (bootloader.find("N5120") == 0) {
         for (const auto &source : ro_product_props_default_source_order) {
             set_ro_product_prop(source, "fingerprint", "samsung/konaltexx/konalte:4.4.2/KOT49H/N5120XXDOD1:user/release-keys");
