@@ -1,5 +1,5 @@
-allow priv_app sysfs_cpuinfo:dir { search open read };
-allow priv_app sysfs_cpuinfo:file r_file_perms;
+allow priv_app sysfs_devices_system_cpu:dir { search open read };
+allow priv_app sysfs_devices_system_cpu:file r_file_perms;
 allow priv_app sysfs:file { read open getattr };
 allow priv_app zygote:dir search;
 allow priv_app boottime_prop:file { getattr open };

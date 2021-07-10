@@ -1,3 +1,5 @@
-allow gatekeeperd sysfs_cpuinfo:dir search;
-allow gatekeeperd sysfs_cpuinfo:file { getattr open read };
+allow gatekeeperd sysfs_devices_system_cpu:dir search;
+allow gatekeeperd sysfs_devices_system_cpu:file { getattr open read };
 allow gatekeeperd gpsd_exec:file getattr;
+allow gatekeeperd init:binder call;
+allow gatekeeperd gpsd_exec:file read;

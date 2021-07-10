@@ -1,2 +1,2 @@
-allow untrusted_app_27 sysfs_cpuinfo:dir { search open read };
-allow untrusted_app_27 sysfs_cpuinfo:file r_file_perms;
+allow untrusted_app_27 sysfs_devices_system_cpu:dir { search open read };
+allow untrusted_app_27 sysfs_devices_system_cpu:file r_file_perms;

@@ -1,5 +1,5 @@
 allow audioserver rild:unix_stream_socket connectto;
-allow audioserver sysfs_cpuinfo:dir search;
-allow audioserver sysfs_cpuinfo:file { getattr open read };
+allow audioserver sysfs_devices_system_cpu:dir search;
+allow audioserver sysfs_devices_system_cpu:file { getattr open read };
 allow audioserver vendor_file:file execmod;
 allow audioserver gpsd_exec:file getattr;

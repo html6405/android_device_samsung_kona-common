@@ -1,2 +1,2 @@
-allow adbd sysfs_cpuinfo:dir search;
-allow adbd sysfs_cpuinfo:file { getattr open read };
+allow adbd sysfs_devices_system_cpu:dir search;
+allow adbd sysfs_devices_system_cpu:file { getattr open read };

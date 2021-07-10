@@ -23,6 +23,4 @@ allow hal_wifi_default self:udp_socket ioctl;
 allow hal_wifi_default wifi_socket:dir { add_name search setattr write remove_name rmdir };
 allow hal_wifi_default wifi_socket:sock_file { setattr write create unlink };
 
-#allow hal_wifi_default hal_wifi_supplicant_hwservice:hwservice_manager add;
-#allow hal_wifi_default self:packet_socket ioctl;
-
+allow hal_wifi_default efs_device_file:file { open read };

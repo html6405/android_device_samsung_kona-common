@@ -1,5 +1,5 @@
-allow untrusted_app sysfs_cpuinfo:dir { search open read };
-allow untrusted_app sysfs_cpuinfo:file r_file_perms;
+allow untrusted_app sysfs_devices_system_cpu:dir { search open read };
+allow untrusted_app sysfs_devices_system_cpu:file r_file_perms;
 allow untrusted_app init:dir search;
 allow untrusted_app init:file getattr;
 allow untrusted_app kernel:dir search;

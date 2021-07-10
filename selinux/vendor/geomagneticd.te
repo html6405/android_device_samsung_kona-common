@@ -24,5 +24,6 @@ allow geomagneticd system_data_file:file { open read getattr };
 allow geomagneticd geomagneticd_config_file:file { create read getattr open rename setattr write unlink };
 allow geomagneticd sysfs_sensors:file { read open };
 allow geomagneticd gpsd_exec:file getattr;
-allow geomagneticd sysfs_cpuinfo:dir search;
-allow geomagneticd sysfs_cpuinfo:file { getattr open read };
+allow geomagneticd sysfs_devices_system_cpu:dir search;
+allow geomagneticd sysfs_devices_system_cpu:file { getattr open read };
+allow geomagneticd gpsd_exec:file read;
