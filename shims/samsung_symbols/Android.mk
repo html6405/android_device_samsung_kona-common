@@ -22,7 +22,7 @@ LOCAL_SRC_FILES := \
     samsung_atomic.cpp \
     gps_symbols.cpp
 
-LOCAL_SHARED_LIBRARIES := libbinder libgui libssl
+LOCAL_SHARED_LIBRARIES := libbinder libssl
 
 LOCAL_MODULE := libsamsung_symbols
 LOCAL_VENDOR_MODULE := true
