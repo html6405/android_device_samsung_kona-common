@@ -108,7 +108,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # UMS
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/ums_init.sh:system/bin/ums_init.sh
+    $(LOCAL_PATH)/configs/ums_init.sh:vendor/bin/ums_init.sh
 
 # Proprietary blobs dependency on libstlport
 PRODUCT_PACKAGES +=  libstlport
