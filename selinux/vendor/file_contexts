@@ -83,6 +83,7 @@
 /vendor/bin/hw/wpa_supplicant                                    u:object_r:hal_wifi_default_exec:s0
 /vendor/bin/orientationd	                                 u:object_r:orientationd_exec:s0
 /vendor/bin/geomagneticd	                                 u:object_r:geomagneticd_exec:s0
+/vendor/bin/main_route_table.sh                               u:object_r:main_route_table_exec:s0
 
 # Geomagnetic
 /data/system/yas-backup.cfg                                      u:object_r:geomagneticd_config_file:s0
