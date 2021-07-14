@@ -16,3 +16,4 @@ allow macloader sysfs_cpuinfo:dir search;
 allow macloader sysfs_cpuinfo:file { read getattr open };
 allow macloader wifi_efs_file:dir search;
 allow macloader gpsd_exec:file getattr;
+allow macloader unlabeled:file r_file_perms;
