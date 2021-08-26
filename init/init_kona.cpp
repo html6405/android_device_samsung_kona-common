@@ -42,6 +42,7 @@ void vendor_load_properties()
 
     char const *serial_number_file = SERIAL_NUMBER_FILE;
     std::string serial_number;
+    std::string serial_number_sub;
 
     if (platform != ANDROID_TARGET)
         return;
@@ -49,6 +50,7 @@ void vendor_load_properties()
     if (ReadFileToString(serial_number_file, &serial_number)) {
         serial_number = Trim(serial_number);
         property_override("ro.serialno", serial_number.c_str());
+        serial_number_sub = serial_number.substr(0, 9);
     }
 
     if (bootloader.find("N5100") != std::string::npos) {
@@ -65,6 +67,14 @@ void vendor_load_properties()
         property_override_dual("ro.build.description", "ro.vendor.build.description", "konawifixx-user 4.4.2 KOT49H N5110XXDNF1 release-keys");
         property_override_dual("ro.build.fingerprint", "ro.vendor.build.fingerprint", "samsung/konawifixx/konawifi:4.4.2/KOT49H/N5110XXDNF1:user/release-keys");
         property_override("ro.build.product", "n5110");
+    } else if (bootloader.find("M500W") != std::string::npos) {
+        property_override_dual("ro.product.model", "ro.vendor.product.model", "SHW-M500W");
+        property_override_dual("ro.product.device", "ro.vendor.product.device", "konawifiany");
+        property_override_dual("ro.product.name", "ro.vendor.product.name", "konawifiany");
+        property_override_dual("ro.build.description", "ro.vendor.build.description", "konawifiany-user 4.4.2 KOT49H M500WKXUBQA1 release-keys");
+        property_override_dual("ro.build.fingerprint", "ro.vendor.build.fingerprint", "samsung/konawifiany/konawifiany:4.4.2/KOT49H/M500WKXUBQA1:user/release-keys");
+        property_override("ro.build.product", "m500w");
+        property_override("ro.serialno", serial_number_sub.c_str());
     } else if (bootloader.find("N5120") != std::string::npos) {
         property_override_dual("ro.product.model", "ro.vendor.product.model", "GT-N5120");
         property_override_dual("ro.product.device", "ro.vendor.product.device", "konalte");
