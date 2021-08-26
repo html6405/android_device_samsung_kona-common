@@ -46,12 +46,14 @@ void vendor_load_properties()
 
     char const *serial_number_file = SERIAL_NUMBER_FILE;
     std::string serial_number;
+    std::string serial_number_sub;
 
     property_override("ro.treble.enabled", "true");
 
     if (ReadFileToString(serial_number_file, &serial_number)) {
         serial_number = Trim(serial_number);
         property_override("ro.serialno", serial_number.c_str());
+        serial_number_sub = serial_number.substr(0, 9);
     }
 
     const auto set_ro_product_prop = [](const std::string &source,
@@ -90,6 +92,17 @@ void vendor_load_properties()
         property_override("ro.build.description", "konawifixx-user 4.4.2 KOT49H N5110XXDNF1 release-keys");
         property_override("ro.build.product", "n5110");
         property_override("ro.radio.noril", "yes");
+    } else if (bootloader.find("M500W") == 0) {
+        for (const auto &source : ro_product_props_default_source_order) {
+            set_ro_product_prop(source, "fingerprint", "samsung/konawifiany/konawifiany:4.4.2/KOT49H/M500WKXUBQA1:user/release-keys");
+            set_ro_product_prop(source, "device", "konawifiany");
+            set_ro_product_prop(source, "model", "SHW-M500W");
+            set_ro_product_prop(source, "name", "konawifiany");
+        }
+        property_override("ro.build.description", "konawifiany-user 4.4.2 KOT49H M500WKXUBQA1 release-keys");
+        property_override("ro.build.product", "m500w");
+        property_override("ro.radio.noril", "yes");
+        property_override("ro.serialno", serial_number_sub.c_str());
     } else if (bootloader.find("N5120") == 0) {
         for (const auto &source : ro_product_props_default_source_order) {
             set_ro_product_prop(source, "fingerprint", "samsung/konaltexx/konalte:4.4.2/KOT49H/N5120XXDOD1:user/release-keys");
