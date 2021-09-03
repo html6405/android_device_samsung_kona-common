@@ -36,9 +36,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     tiny_hw
 
-PRODUCT_PACKAGES += \
-	Via
-
 # Sensors
 PRODUCT_PACKAGES += \
     sensors.smdk4x12 \
