@@ -19,7 +19,7 @@
 set -e
 
 DEVICE=kona-common
-VENDOR=kona-common
+VENDOR=samsung
 
 INITIAL_COPYRIGHT_YEAR=2021
 

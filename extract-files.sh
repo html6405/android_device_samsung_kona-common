@@ -19,7 +19,7 @@
 set -e
 
 DEVICE=kona-common
-VENDOR=kona-common
+VENDOR=samsung
 
 # Load extract_utils and do some sanity checks
 MY_DIR="${BASH_SOURCE%/*}"
