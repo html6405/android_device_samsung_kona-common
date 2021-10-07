@@ -38,6 +38,7 @@ BOARD_EXYNOS4X12_TABLET_HAS_LED_BUTTONS := true
 
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/kona-common/bluetooth
+BOARD_CUSTOM_BT_CONFIG := device/samsung/kona-common/bluetooth/vnd_kona.txt
 
 # Kernel
 TARGET_KERNEL_SOURCE := kernel/samsung/smdk4412
