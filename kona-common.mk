@@ -31,6 +31,7 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/rootdir/fstab.n51xx:root/fstab.smdk4x12 \
     $(LOCAL_PATH)/rootdir/ueventd.smdk4x12.rc:root/ueventd.smdk4x12.rc \
     $(LOCAL_PATH)/rootdir/ueventd.smdk4x12.rc:recovery/root/ueventd.smdk4x12.rc \
+    $(LOCAL_PATH)/rootdir/init.target.usb.rc:root/init.target.usb.rc
 
 # Audio
 PRODUCT_PACKAGES += \
