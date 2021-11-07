@@ -32,5 +32,5 @@
 /dev/block/mmcblk0p4      0660   system     root
 /dev/block/mmcblk0p7      0660   system     radio
 /dev/ttyUSB0              0666   system     system
-
+/dev/alarm                0664   system     radio
 /dev/input/*              0664   root       input
