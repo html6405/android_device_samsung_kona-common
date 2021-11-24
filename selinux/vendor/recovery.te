@@ -20,5 +20,4 @@ allow recovery safemode_prop:file { getattr open };
 allow recovery shell_data_file:dir { getattr read };
 allow recovery system_data_file:dir { open read };
 allow recovery system_data_file:file open;
-allow recovery system_radio_prop:property_service set;
 allow recovery vfat:file { setattr write };
