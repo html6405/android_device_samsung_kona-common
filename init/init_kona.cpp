@@ -48,7 +48,7 @@ void vendor_load_properties()
     std::string serial_number;
     std::string serial_number_sub;
 
-    property_override("ro.treble.enabled", "true");
+    //property_override("ro.treble.enabled", "true");
 
     if (ReadFileToString(serial_number_file, &serial_number)) {
         serial_number = Trim(serial_number);
