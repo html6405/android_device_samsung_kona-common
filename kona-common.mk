@@ -56,6 +56,10 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_PACKAGES += \
 	gps.smdk4x12
+
+PRODUCT_PACKAGES += \
+    libshims_sensorlistener
+
 endif
 
 
