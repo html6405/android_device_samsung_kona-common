@@ -17,9 +17,6 @@ include device/samsung/smdk4412-common/BoardCommonConfig.mk
 
 TARGET_SPECIFIC_HEADER_PATH := device/samsung/kona-common/include
 
-WITHOUT_CAMERA2 := true
-WITHOUT_GCAM := false
-
 # Wifi
 WIFI_DRIVER_MODULE_PATH :=
 
