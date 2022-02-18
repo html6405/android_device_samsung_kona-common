@@ -443,11 +443,4 @@
          format is UMTS|LTE|...
     -->
     <string translatable="false" name="config_radio_access_family">GPRS|EDGE|WCDMA</string>
-
-    <!-- Set icon mask to square -->
-    <string name="config_icon_mask" translatable="false">"M50,0L100,0 100,100 0,100 0,0z"</string>
-
-    <!-- Flag indicating whether round icons should be parsed from the application manifest. -->
-    <bool name="config_useRoundIcon">false</bool>
-
 </resources>
