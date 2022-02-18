@@ -53,9 +53,6 @@ ifneq ($(TARGET_PRODUCT),lineage_n5120)
 # Gps
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/gps.xml:vendor/etc/gps.xml
-
-PRODUCT_PACKAGES += \
-	gps.smdk4x12
 endif
 
 # Product specific Packages
