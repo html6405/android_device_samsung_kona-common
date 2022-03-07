@@ -66,12 +66,6 @@ PRODUCT_PACKAGES += \
     SamsungServiceMode \
     tinyplay
 
-ifneq ($(TARGET_PRODUCT),lineage_n5120)
-# RIL
-PRODUCT_PACKAGES += \
-	libsecril-shim
-endif
-
 # Camera
 PRODUCT_PACKAGES += \
     camera.smdk4x12
