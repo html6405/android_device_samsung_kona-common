@@ -30,9 +30,7 @@ TARGET_HAS_CAM_FLASH := false
 PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/rootdir/fstab.n51xx:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.smdk4x12 \
 	$(LOCAL_PATH)/rootdir/fstab.n51xx:$(TARGET_COPY_OUT_RAMDISK)/fstab.smdk4x12 \
-    $(LOCAL_PATH)/rootdir/ueventd.smdk4x12.rc:root/ueventd.smdk4x12.rc \
     $(LOCAL_PATH)/rootdir/ueventd.smdk4x12.rc:$(TARGET_COPY_OUT_VENDOR)/ueventd.rc\
-    $(LOCAL_PATH)/rootdir/ueventd.smdk4x12.rc:recovery/root/ueventd.smdk4x12.rc \
     $(LOCAL_PATH)/rootdir/init.target.usb.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.target.usb.rc
 
 # Audio
