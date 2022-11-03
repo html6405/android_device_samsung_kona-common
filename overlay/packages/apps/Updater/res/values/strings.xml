@@ -16,9 +16,9 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-    <string name="updater_server_url" translatable="false">http://html6405.ddns.net/{device}/html6405/LOS19/{device}.json</string>
+    <string name="updater_server_url" translatable="false">http://html6405.ddns.net/{device}/html6405/LOS20/{device}.json</string>
 
-    <string name="menu_changelog_url" translatable="false">https://forum.xda-developers.com/t/lineageos-19-0-android-12-for-gt-n5100-gt-n5110-gt-n5120-alpha.4366627/post-85998363</string>
+    <string name="menu_changelog_url" translatable="false">https://forum.xda-developers.com/t/lineageos-20-0-android-12l-for-gt-n5100-gt-n5110-gt-n5120-alpha.4514147/post-87672031</string>
 
 </resources>
 
