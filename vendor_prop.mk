@@ -1,3 +1,64 @@
+#
+# vendor_prop for n51xx
+#
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.vendor.product.name=p4notewifiue \
-    ro.vendor.product.device=p4notewifi
+	config.disable_atlas=true \
+	dalvik.vm.dexopt-data-only=1 \
+	dalvik.vm.dex2oat-Xmx=256m \
+	ro.sf.lcd_density=213 \
+	ro.lcd_min_brightness=20
+
+# EGL blobs crash on screen off
+PRODUCT_PROPERTY_OVERRIDES += \
+	ro.egl.destroy_after_detach=true
+
+# Camera API
+PRODUCT_PROPERTY_OVERRIDES += \
+	persist.camera.HAL3.enabled=1
+
+# RAM optimizations
+PRODUCT_PROPERTY_OVERRIDES += \
+	config.disable_atlas=true \
+	ro.sys.fw.trim_enable_memory=805306368 \
+	ro.sys.fw.use_trim_settings=true \
+	ro.sys.fw.empty_app_percent=25 \
+	ro.sys.fw.trim_empty_percent=50 \
+	ro.sys.fw.trim_cache_percent=50 \
+	ro.sys.fw.bg_apps_limit=16 \
+	ro.sys.fw.bservice_limit=7 \
+	ro.sys.fw.bservice_age=6000 \
+	ro.sys.fw.bservice_enable=true
+
+# hwui
+PRODUCT_PROPERTY_OVERRIDES += \
+	ro.hwui.drop_shadow_cache_size=1 \
+	ro.hwui.gradient_cache_size=0.2 \
+	ro.hwui.layer_cache_size=6 \
+	ro.hwui.path_cache_size=2 \
+	ro.hwui.r_buffer_cache_size=1 \
+	ro.hwui.texture_cache_size=8
+
+# Free up RAM by purging assets.
+PRODUCT_PROPERTY_OVERRIDES += \
+	persist.sys.purgeable_assets=1
+
+# Better RAM management
+PRODUCT_PROPERTY_OVERRIDES += \
+	ro.HOME_APP_ADJ=1
+
+# Low RAM mode
+PRODUCT_PROPERTY_OVERRIDES += \
+	ro.config.low_ram=false
+
+# Force high-end graphics in low ram mode
+PRODUCT_PROPERTY_OVERRIDES += \
+	persist.sys.force_highendgfx=true
+
+# GPS
+PRODUCT_PROPERTY_OVERRIDES += \
+	ro.ril.def.agps.mode=1
+
+# Multiuser
+PRODUCT_PROPERTY_OVERRIDES += \
+	fw.max_users=4 \
+	fw.show_multiuserui=1
