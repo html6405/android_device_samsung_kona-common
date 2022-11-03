@@ -47,9 +47,6 @@ ifneq ($(TARGET_PRODUCT),lineage_n5120)
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/gps.xml:vendor/etc/gps.xml
 
-PRODUCT_PACKAGES += \
-    libshims_sensorlistener
-
 endif
 
 # Product specific Packages

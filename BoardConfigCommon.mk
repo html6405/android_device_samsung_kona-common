@@ -66,5 +66,4 @@ TARGET_INIT_VENDOR_LIB := libinit_kona
 endif
 
 TARGET_LD_SHIM_LIBS += \
-    /vendor/bin/gpsd|libsamsung_symbols.so \
-    /vendor/bin/gpsd|libshims_sensorlistener.so
+    /vendor/bin/gpsd|libsamsung_symbols.so
