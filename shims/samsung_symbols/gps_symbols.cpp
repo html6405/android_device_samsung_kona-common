@@ -20,6 +20,9 @@
 extern "C" void _ZNK7android13SensorManager13getSensorListEPPKPKNS_6SensorE();
 extern "C" void _ZNK7android13SensorManager13getSensorListEPPKPKNS_6SensorE(){}
 
+extern "C" void _ZN7android13SensorManager16createEventQueueENS_7String8Ei();
+extern "C" void _ZN7android13SensorManager16createEventQueueENS_7String8Ei(){}
+
 extern "C" {
 
 const SSL_METHOD *SSLv3_method(void) {
