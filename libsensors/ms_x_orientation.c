@@ -123,7 +123,7 @@ int ms_x_orientation_activate(struct smdk4x12_sensors_handlers *handlers)
 		ALOGE("%s: Unable to write sysfs value", __func__);
 		return -1;
 	}
-    property_set("ctl.start", "orientationd");
+    property_set("ctl.start", "vendor.orientationd");
 	handlers->activated = 1;
 
 	return 0;
@@ -146,7 +146,7 @@ int ms_x_orientation_deactivate(struct smdk4x12_sensors_handlers *handlers)
 		ALOGE("%s: Unable to write sysfs value", __func__);
 		return -1;
 	}
-    property_set("ctl.stop", "orientationd");
+    property_set("ctl.stop", "vendor.orientationd");
 	handlers->activated = 1;
 
 	return 0;
