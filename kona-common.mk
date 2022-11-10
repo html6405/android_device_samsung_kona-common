@@ -37,6 +37,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     tiny_hw
 
+# Media
+PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/configs/media_codecs_tablet.xml:vendor/etc/media_codecs.xml
+
 # Sensors
 PRODUCT_PACKAGES += \
     sensors.smdk4x12 \
