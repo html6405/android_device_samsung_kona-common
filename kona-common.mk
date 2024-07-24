@@ -46,6 +46,10 @@ PRODUCT_PACKAGES += \
     sensors.smdk4x12 \
     libsamsung_symbols
 
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/sensors.rc:vendor/etc/init/sensors.rc \
+    $(LOCAL_PATH)/configs/sensors.sh:vendor/bin/sensors.sh
+
 ifneq ($(TARGET_PRODUCT),lineage_n5120)
 # Gps
 PRODUCT_COPY_FILES += \

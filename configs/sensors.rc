@@ -1,0 +1,4 @@
+service sensorenabler /vendor/bin/sensors.sh
+    class main
+    oneshot
+    seclabel u:r:sensorenabler:s0
