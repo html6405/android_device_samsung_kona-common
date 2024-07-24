@@ -82,6 +82,7 @@
 /vendor/bin/restart_rild.sh                               u:object_r:radioreset_exec:s0
 /vendor/bin/param.sh                                      u:object_r:param_exec:s0
 /vendor/bin/tweaks.sh                               u:object_r:tweaks_exec:s0
+/vendor/bin/sensors.sh                               u:object_r:sensorenabler_exec:s0
 /vendor/bin/hw/wpa_supplicant                                    u:object_r:hal_wifi_default_exec:s0
 /vendor/bin/orientationd	                                 u:object_r:orientationd_exec:s0
 /vendor/bin/geomagneticd	                                 u:object_r:geomagneticd_exec:s0
