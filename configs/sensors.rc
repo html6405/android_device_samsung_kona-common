@@ -2,3 +2,6 @@ service sensorenabler /vendor/bin/sensors.sh
     class main
     oneshot
     seclabel u:r:sensorenabler:s0
+
+ on property:sys.boot_completed=1
+    start sensorenabler
