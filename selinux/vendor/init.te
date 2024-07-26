@@ -6,7 +6,7 @@ allow init sysfs_bluetooth_writable:file setattr;
 allow init sysfs_display:file { open setattr write read };
 allow init sysfs_radio:file setattr;
 allow init proc:file { open write setattr };
-allow init sysfs:file { setattr };
+allow init sysfs:file { setattr write };
 allow init sysfs_batteryinfo:file setattr;
 allow init sysfs_devices_system_cpu:file { setattr open read write };
 allow init su_exec:file { execute getattr open read };
@@ -58,6 +58,8 @@ allow init hal_lineage_touch_hwservice:hwservice_manager { add find };
 
 allow init sysfs_wake_lock:file { open write };
 allow init system_file:file execute_no_trans;
+
+allow init sensorenabler_exec:file { getattr execute read open execute_no_trans };
 
 allow init { domain -lmkd -crash_dump }:process noatsecure;
 domain_trans(init, rootfs, cpboot-daemon)
