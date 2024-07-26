@@ -45,7 +45,7 @@
 /data/system/gps(/.*)?                                           u:object_r:gps_data_file:s0
 
 # Sensors
-/sys/devices/virtual/input/input4/enable                         u:object_r:sysfs_sensors:s0
+/sys/devices/virtual/input/input3/enable                         u:object_r:sysfs_sensors:s0
 /sys/devices/platform/i2c-gpio.10/i2c-10/10-002e/input/input6/distortion        u:object_r:sysfs_sensors:s0
 /sys/devices/platform/i2c-gpio.10/i2c-10/10-002e/input/input6/static_matrix     u:object_r:sysfs_sensors:s0
 
