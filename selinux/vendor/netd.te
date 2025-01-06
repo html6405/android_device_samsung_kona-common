@@ -7,3 +7,4 @@ allow netd sysfs:file { open write };
 allow netd gpsd:fd use;
 allow netd gpsd_exec:file getattr;
 allow netd gpsd:tcp_socket { getopt read setopt write };
+allow netd init:tcp_socket { read write getopt setopt };
