@@ -2,7 +2,6 @@
 # vendor_prop for n51xx
 #
 PRODUCT_PROPERTY_OVERRIDES += \
-	config.disable_atlas=true \
 	dalvik.vm.dexopt-data-only=1 \
 	dalvik.vm.dex2oat-Xmx=256m \
 	ro.sf.lcd_density=213 \
