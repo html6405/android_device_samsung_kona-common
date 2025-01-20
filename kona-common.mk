@@ -96,9 +96,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.heapsize=256m \
 
-# UMS
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/ums_init.sh:vendor/bin/ums_init.sh
 
 # Proprietary blobs dependency on libstlport
 PRODUCT_PACKAGES +=  libstlport
