@@ -1,3 +1,4 @@
-allow installd sysfs_devices_system_cpu:dir search;
-allow installd sysfs_devices_system_cpu:file { getattr open read };
-allow installd gpsd_exec:file getattr;
+allow installd self:capability sys_nice;
+allow installd device:file rw_file_perms;
+allow installd system_data_file:dir r_dir_perms;
+allow installd gpsd_exec:file r_file_perms;

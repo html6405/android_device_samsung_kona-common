@@ -1,4 +1,2 @@
 type sensorenabler, domain;
 type sensorenabler_exec, exec_type, file_type;
-
-permissive sensorenabler;

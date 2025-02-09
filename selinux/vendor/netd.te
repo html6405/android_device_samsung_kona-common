@@ -1,10 +1,5 @@
 allow netd self:capability sys_module;
-allow netd sysfs_devices_system_cpu:dir search;
-allow netd sysfs_devices_system_cpu:file { getattr open read };
-allow netd sysfs_rmnet:dir search;
-allow netd sysfs_rmnet:file { open write };
-allow netd sysfs:file { open write };
-allow netd gpsd:fd use;
-allow netd gpsd_exec:file getattr;
-allow netd gpsd:tcp_socket { getopt read setopt write };
-allow netd init:tcp_socket { read write getopt setopt };
+allow netd self:capability sys_nice;
+allow netd device:file rw_file_perms;
+allow netd init:tcp_socket rw_socket_perms;
+allow netd gpsd_exec:file r_file_perms;

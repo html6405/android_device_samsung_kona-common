@@ -1,2 +1,2 @@
-allow blkid_untrusted sysfs_devices_system_cpu:dir search;
-allow blkid_untrusted sysfs_devices_system_cpu:file { getattr open read };
+allow blkid_untrusted sysfs_devices_system_cpu:dir r_dir_perms;
+allow blkid_untrusted sysfs_devices_system_cpu:file r_file_perms;

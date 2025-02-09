@@ -1,0 +1,5 @@
+allow untrusted_app_29 sysfs_devices_system_cpu:dir r_dir_perms;
+allow untrusted_app_29 sysfs_devices_system_cpu:file { getattr open read };
+allow untrusted_app_29 vendor_file:file { getattr open read execute };
+allow untrusted_app_29 ion_device:chr_file rw_file_perms;
+allow untrusted_app_29 gpsd_exec:file r_file_perms;

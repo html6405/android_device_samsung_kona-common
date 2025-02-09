@@ -1,6 +1,11 @@
-allow shell sysfs_devices_system_cpu:dir search;
-allow shell sysfs_devices_system_cpu:file { getattr open read };
-allow shell sysfs_display:dir { open read search };
-allow shell sysfs_display:file getattr;
-allow shell sysfs_display:lnk_file { getattr read };
-allow shell gpsd_exec:file getattr;
+#allow shell kernel:system syslog_read;
+allow shell su:process signal;
+allow shell kmsg_device:chr_file { open read };
+allow shell sysfs_devices_system_cpu:dir r_dir_perms;
+allow shell sysfs_devices_system_cpu:file r_file_perms;
+allow shell aac_drc_prop:file { getattr open };
+allow shell ab_update_gki_prop:file { getattr open };
+allow shell adaptive_haptics_prop:file open;
+allow shell kernel:system syslog_read;
+allow shell wifi_prop:file r_file_perms;
+allow shell gpsd_exec:file r_file_perms;

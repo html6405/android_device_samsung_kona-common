@@ -1,0 +1,2 @@
+allow gatekeeperd init:binder call;
+allow gatekeeperd gpsd_exec:file r_file_perms;

@@ -1,0 +1,1 @@
+allow mediaswcodec gpsd_exec:file r_file_perms;allow mediaswcodec gpsd_exec:file r_file_perms;

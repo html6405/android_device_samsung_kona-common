@@ -13,7 +13,6 @@ allow recovery ota_package_file:dir { getattr open read search };
 allow recovery properties_device:dir rename;
 allow recovery property_data_file:dir { getattr open read search };
 allow recovery property_data_file:file getattr;
-allow recovery radio_data:dir { getattr open read search };
 allow recovery rootfs:dir { add_name remove_name write };
 allow recovery rootfs:file { create link rename setattr unlink write };
 allow recovery safemode_prop:file { getattr open };

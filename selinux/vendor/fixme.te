@@ -1,3 +1,0 @@
-#init
-allow init app_data_file:file { open };
-allow init app_data_file:dir { add_name setattr write };

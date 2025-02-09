@@ -1,2 +1,2 @@
-allow fsck_untrusted sysfs_devices_system_cpu:dir search;
-allow fsck_untrusted sysfs_devices_system_cpu:file { read getattr open };
+allow fsck_untrusted sysfs_devices_system_cpu:dir r_dir_perms;
+allow fsck_untrusted sysfs_devices_system_cpu:file r_file_perms;

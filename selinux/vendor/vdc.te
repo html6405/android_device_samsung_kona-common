@@ -1,3 +1,3 @@
-allow vdc sysfs_devices_system_cpu:dir search;
-allow vdc sysfs_devices_system_cpu:file { getattr open read };
-allow vdc gpsd_exec:file getattr;
+allow vdc sysfs_devices_system_cpu:dir r_dir_perms;
+allow vdc sysfs_devices_system_cpu:file r_file_perms;
+allow vdc gpsd_exec:file r_file_perms;

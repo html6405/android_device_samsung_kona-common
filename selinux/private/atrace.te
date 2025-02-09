@@ -1,0 +1,1 @@
+allow atrace gpsd_exec:file r_file_perms;

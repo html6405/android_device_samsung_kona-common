@@ -1,5 +1,7 @@
+allow mediaserver system_file:file execmod;
 allow mediaserver mfc_device:chr_file rw_file_perms;
-allow mediaserver ion_device:chr_file { write };
-allow mediaserver sysfs_devices_system_cpu:dir search;
-allow mediaserver sysfs_devices_system_cpu:file { getattr open read };
-allow mediaserver gpsd_exec:file getattr;
+allow mediaserver ion_device:chr_file rw_file_perms;
+allow mediaserver vendor_file:file r_file_perms;
+allow mediaserver vendor_file:file execute;
+allow mediaserver gpsd_exec:file r_file_perms;
+allow mediaserver vendor_default_prop:file r_file_perms;

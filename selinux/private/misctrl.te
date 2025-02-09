@@ -1,0 +1,1 @@
+allow misctrl gpsd_exec:file r_file_perms;

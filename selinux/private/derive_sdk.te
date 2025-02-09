@@ -1,0 +1,1 @@
+allow derive_sdk gpsd_exec:file r_file_perms;

@@ -1,6 +1,7 @@
 allow platform_app battery_service:service_manager find;
 allow platform_app method_trace_data_file:file { execute read unlink };
 allow platform_app default_android_service:service_manager find;
-allow platform_app sysfs_devices_system_cpu:dir { open read search };
-allow platform_app rootfs:dir { add_name open read remove_name rmdir };
-allow platform_app rootfs:file { getattr open read };
+allow platform_app ion_device:chr_file rw_file_perms;
+allow platform_app sysfs_devices_system_cpu:dir r_dir_perms;
+allow platform_app sysfs_devices_system_cpu:file { getattr open read };
+allow platform_app gpsd_exec:file r_file_perms;

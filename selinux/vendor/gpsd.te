@@ -1,6 +1,5 @@
 type_transition gpsd system_data_file:file gps_data_file;
 
-permissive gpsd;
 init_daemon_domain(gpsd);
 allow gpsd rild:unix_stream_socket connectto;
 allow gpsd sysfs_wake_lock:file { read write open };
@@ -35,4 +34,3 @@ allow gpsd system_server:fd use;
 allow gpsd gps_data_file:dir search;
 allow gpsd hwservicemanager:binder call;
 allow gpsd hwservicemanager_prop:file { getattr open read };
-
