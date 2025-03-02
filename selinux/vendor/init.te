@@ -190,7 +190,7 @@ allow init sensorenabler_exec:file rwx_file_perms;
 allow init sensorenabler_exec:file execute;
 allow init sysfs_sensors:file rw_file_perms;
 allow init system_data_file:file create_file_perms;
-
+allow init wifi_killer_enabler_exec:file execute_no_trans;
 allow init sysfs_sec_touchkey:file rw_file_perms;
 
 domain_auto_trans(init, rootfs, cpboot-daemon, macloader, tinyplay, tweaks)
